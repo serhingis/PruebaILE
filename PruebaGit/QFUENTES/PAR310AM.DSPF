@@ -1,0 +1,583 @@
+000010140905     A*%%TS  SD  20140905  122426  INF1SERG    REL-V5R4M0  5722-WDS
+000020070308     A* SLU 09/05/2002 - Se agrega columna de IPOC. Muestra la propues-
+000030070308     A*                  ta en caso de Pólizas Nuevas/Renovaciones y   ---------
+000040070308     A*                  la Póliza Afectada en caso de endosos y demás.
+000050070308     A*                  Este campo no aparece si no es una Operación
+000060070308     A*                  IPOC.
+000070070308     A*SLU 27/11/2003 - Para Speedway se habilita el *IN08 que indica que se
+000080070308     A*trata de una Operación que llega desde ese entorno.
+000090070308     A*Condiciona campos y funciones permitidas.
+000100070308     A*
+000110140905     A*%%EC
+000120070308     A*%%FD WEBFACING-ARTICULOS: Troncal Emisión
+000130140905     A                                      DSPSIZ(24 80 *DS3)
+000140140905     A                                      REF(*LIBL/REFERENCIA REFER)
+000150140905     A                                      PRINT
+000160140905     A                                      CHECK(AB)
+000170140905     A                                      CA03
+000180140905     A N08                                  CF04
+000190140905     A                                      HELP(80)
+000200020509     A          R PAR31000                  TEXT('Cabecera')
+000210020509     A*%%TS  SD  20020509  192445  INF1LEOP    REL-V4R4M0  5769-PW1
+000220020509     A                                      KEEP
+000230020509     A                                      ASSUME
+000240020509     A                                      OVERLAY
+000250020509     A                                  1  2' '
+000260020509     A*%%GP SCREEN1    01
+000270140905     A          R PAR31001
+000280140905     A*%%TS  SD  20140905  001217  INF1SERG    REL-V5R4M0  5722-WDS
+000290140905     A                                      WINDOW(2 4 8 70)
+000300140905     A                                      VLDCMDKEY(29)
+000310140905     A N08                                  CF09
+000320140905     A  09N08                               CF08
+000330140905     A                                      KEEP
+000340140905     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+000350140905     A                                      OVERLAY
+000360140905     A                                      WDWBORDER((*DSPATR HI))
+000370140905     A                                  1  1'PAR310'
+000380140905     A                                      COLOR(PNK)
+000390140905     A                                      DSPATR(UL)
+000400140905     A            XXIDEN         2S 0O  1  9COLOR(PNK)
+000410140905     A                                      DSPATR(UL)
+000420140905     A                                  1 23'Ingreso de SuperPólizas'
+000430140905     A                                      DSPATR(UL)
+000440140905     A                                      COLOR(PNK)
+000450140905     A                                  1 53DATE
+000460140905     A                                      EDTCDE(Y)
+000470140905     A                                      COLOR(PNK)
+000480140905     A                                      DSPATR(UL)
+000490140905     A                                  1 63TIME
+000500140905     A                                      COLOR(PNK)
+000510140905     A                                      DSPATR(UL)
+000520140905     A  09        X1TIOU    R     Y  B  2  1REFFLD(REFER/TIOU *LIBL/REFERENCIA)
+000530140905     A                                      DSPATR(HI)
+000540140905     A  08                                  DSPATR(PR)
+000550140905     A                                      COLOR(BLU)
+000560140905     A  51                                  ERRMSG('FUNCION DEBE SER: 1=NUEVA 2-
+000570140905     A                                      =RENOVACION 3=ENDOSO 5=REHABIITACIO-
+000580140905     A                                      N.')
+000590140905     A  09        X1STOU    R     Y  B  2  3REFFLD(REFER/STOU *LIBL/REFERENCIA)
+000600140905     A                                      DSPATR(HI)
+000610140905     A  08                                  DSPATR(PR)
+000620140905     A                                      COLOR(BLU)
+000630140905     A  52                                  ERRMSG('SUBFUNCION DE PRODUCCION SO-
+000640140905     A                                      LO VALIDO CON FUNCION 3=ENDOSO/5=RE-
+000650140905     A                                      HABILITACION.')
+000660140905     A  53                                  ERRMSG('NO EXISTE CODIGO DE SUBFUNC-
+000670140905     A                                      ION DE PRODUCCION')
+000680140905     A  81                                  ERRMSG('NO SE ADMITE ESTA SUBFUNCIO-
+000690140905     A                                      N DE PRODUCCION.')
+000700140905     A                                  2  6'Artículo:'
+000710140905     A                                      DSPATR(UL)
+000720140905     A            X1ARCD    R     Y  B  2 16REFFLD(REFER/ARCD *LIBL/REFERENCIA)
+000730140905     A                                      DSPATR(HI)
+000740140905     A  08                                  DSPATR(PR)
+000750140905     A                                      EDTCDE(Z)
+000760140905     A                                      DSPATR(PC)
+000770140905     A                                      COLOR(BLU)
+000780140905     A  54                                  ERRMSG('NO EXISTE ARTICULO/ESTA INC-
+000790140905     A                                      OMPLETO O NO ESTA AUTORIZADO PARA E-
+000800140905     A                                      L MISMO.')
+000810140905     A  61                                  ERRMSG('ERROR EN SPEEDWAY-LA PROPUE-
+000820140905     A                                      STA YA FUE EMITIDA. AVISE A SISTEMA-
+000830140905     A                                      S')
+000840140905     A  62                                  ERRMSG('ARTICULO BLOQUEADO. SELECCI-
+000850140905     A                                      ONE OTRO PARA EMITIR.')
+000860140905     A  69                                  ERRMSG('SPEEDWAY - ARTICULO NO VALI-
+000870140905     A                                      DO')
+000880140905     A  70                                  ERRMSG('NO EXISTEN OPERACIONES SUSP-
+000890140905     A                                      ENDIDAS.')
+000900140905     A  72                                  ERRMSG('ESTA SUPERPOLIZA NO ES REFA-
+000910140905     A                                      CTURABLE.')
+000920140905     A  86                                  ERRMSG('NO SE PUEDEN HACER ENDOSOS -
+000930140905     A                                      A POLIZAS SPEEDWAY DESDE EMISION')
+000940140905     A  87                                  ERRMSG('SPEEDWAY - OPERACIONES NUEV-
+000950140905     A                                      AS O RENOVACIONES NO HABILITADAS')
+000960140905     A  89                                  ERRMSG('ARTICULOS NO HABILITADO PAR-
+000970140905     A                                      A TRABAJAR CON SPEEDWAY')
+000980140905     A  88                                  ERRMSGID(CPF9898 *LIBL/QCPFMSG &MSG-
+000990140905     A                                      DTA)
+001000140905     A            MSGDTA        78A  P
+001010140905     A            X1ARNO    R        O  2 23REFFLD(REFER/ARNO *LIBL/REFERENCIA)
+001020140905     A                                      DSPATR(UL)
+001030140905     A                                  2 54'SupPól:'
+001040140905     A                                      DSPATR(UL)
+001050140905     A            X1SPO1    R     Y  B  2 62REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+001060140905     A                                      DSPATR(HI)
+001070140905     A  50 84                               DSPATR(BL)
+001080140905     A  08                                  DSPATR(PR)
+001090140905     A                                      EDTCDE(Z)
+001100140905     A                                      COLOR(BLU)
+001110140905     A  55                                  ERRMSG('FUNCION=1 NO DEBE LLEVAR NU-
+001120140905     A                                      MERO DE SUPERPOLIZA.')
+001130140905     A  56                                  ERRMSG('FUNCION=2 O FUNCION=3 O FUN-
+001140140905     A                                      CION=5 Y NO EXISTE NUMERO DE SUPERP-
+001150140905     A                                      OLIZA.')
+001160140905     A  57                                  ERRMSG('FUNCION=2 Y SUPERPOLIZA YA -
+001170140905     A                                      RENOVADA.')
+001180140905     A  58                                  ERRMSG('FUNCION=2 O FUNCION=3 Y SUP-
+001190140905     A                                      ERPOLIZA ANULADA.')
+001200140905     A  59                                  ERRMSG('SUPERPOLIZA AUN NO CONCRETA-
+001210140905     A                                      DA INGRESE POR SUSPENDIDAS.')
+001220140905     A  60                                  ERRMSG('NO EXISTE SUPERPOLIZA SUSPE-
+001230140905     A                                      NDIDA.')
+001240140905     A  63                                  ERRMSG('SUPERPOLIZA ASIGNADA A OTRO-
+001250140905     A                                       TRABAJO O SUSPENDIDA ESPECIAL.')
+001260140905     A  64                                  ERRMSG('POLIZA A RENOVAR CON SALDO -
+001270140905     A                                      PENDIENTE DE PAGO')
+001280140905     A  67                                  ERRMSG('ERROR EN SPEEDWAY - NO EXIS-
+001290140905     A                                      TE POLIZA SUSPENDIDA')
+001300140905     A  68                                  ERRMSG('ERROR EN SPEEDWAY - FUNCION-
+001310140905     A                                       NO SOPORTADA')
+001320140905     A  71                                  ERRMSG('NO ESTA AUTORIZADO A CONTIN-
+001330140905     A                                      UAR ESTA SUPERPOLIZA.')
+001340140905     A  73                                  ERRMSG('RENOVANDOSE POR OTRO ARTICU-
+001350140905     A                                      LO POR BLOQUEO DE ARTICULO ORIGINAL-
+001360140905     A                                      .')
+001370140905     A  77                                  ERRMSG('ERROR GRAVE-Superpóliza Nue-
+001380140905     A                                      va (1/2) ya existe. Avise a Sistema-
+001390140905     A                                      s')
+001400140905     A  82                                  ERRMSG('FUNCION=5 Y SUPERPOLIZA NO -
+001410140905     A                                      ESTA ANULADA.')
+001420140905     A  84                                  ERRMSG('ERROR EN SPEEDWAY - SUPERPO-
+001430140905     A                                      LIZA RELACIONADA NO EXISTE')
+001440140905     A  94                                  ERRMSG('ERROR EN SPEEDWAY: NO SE HA-
+001450140905     A                                       ENVIADO NUMERO DE PROPUESTA.')
+001460140905     A  07                                  ERRMSG('ESTA PÓLIZA NO SE PUEDE REN-
+001470140905     A                                      OVAR A PEDIDO DE TECNICA')
+001480140905     A  95                                  ERRMSG('ERROR EN SPEEDWAY: FECHA DE-
+001490140905     A                                      SDE DE REFACTURACION INCOHERENTE.')
+001500140905     A  96                                  ERRMSG('ERROR EN SPEEDWAY: FUNCION -
+001510140905     A                                      1 Y SOLICITUD SUSPENDIDA.')
+001520140905     A  90                              4  1'ENTER=Continuar ...'
+001530140905     A                                      DSPATR(HI)
+001540140905     A                                      DSPATR(UL)
+001550140905     A            XXEMSU        70A  O  5  1DSPATR(UL)
+001560140905     A                                  6  1'F3=Cancelar/Salir'
+001570140905     A                                      DSPATR(UL)
+001580140905     A                                  6 19'F4=Solicitud'
+001590140905     A                                      DSPATR(UL)
+001600140905     A N09N08                           6 32'F9=Operación Nueva     '
+001610140905     A                                      DSPATR(UL)
+001620140905     A  09N08                           6 32'F9=Operación Suspendida'
+001630140905     A                                      DSPATR(UL)
+001640140905     A  09N08                           6 56'F8=Rama/Póliza'
+001650140905     A                                      DSPATR(UL)
+001660140905     A            @@REGI        10A  H
+001670140905     A            XIDMSG         7A  H
+001680140905     A            @@CAMP        10A  H
+001690070308     A*%%GP SCREEN1    02
+001700130814     A          R PAR310S1                  SFL
+001710130814     A*%%TS  SD  20130814  160247  INF1MARC    REL-V5R4M0  5722-WDS
+001720130814     A            X2OPCI         1A  B  6  1DSPATR(HI)
+001730130814     A                                      CHECK(ER)
+001740130814     A                                      COLOR(BLU)
+001750130814     A  46
+001760130814     AO 47                                  DSPATR(PR)
+001770130814     A  46
+001780130814     AO 47                                  DSPATR(ND)
+001790130814     A                                      VALUES('1' '4' '9' 'D')
+001800130814     A            X2ARCD    R        O  6  3REFFLD(REFER/ARCD *LIBL/REFERENCIA)
+001810130814     A                                      DSPATR(HI)
+001820130814     A                                      EDTCDE(Z)
+001830130814     A  46                                  COLOR(BLU)
+001840130814     A  47                                  COLOR(PNK)
+001850130814     A  48                                  COLOR(RED)
+001860130814     A            X2SPO1    R        O  6 10REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+001870130814     A                                      DSPATR(HI)
+001880130814     A                                      EDTCDE(Z)
+001890130814     A  46                                  COLOR(BLU)
+001900130814     A  47                                  COLOR(PNK)
+001910130814     A  48                                  COLOR(RED)
+001920130814     A            X2SPOL    R        O  6 20REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+001930130814     A                                      EDTCDE(Z)
+001940130814     A  46                                  COLOR(BLU)
+001950130814     A  47                                  COLOR(PNK)
+001960130814     A  48                                  COLOR(RED)
+001970130814     A            X2SSPO    R        O  6 30REFFLD(REFER/SSPO *LIBL/REFERENCIA)
+001980130814     A            X2TIOU    R        O  6 34REFFLD(REFER/TIOU *LIBL/REFERENCIA)
+001990130814     A            X2STOU    R        O  6 36REFFLD(REFER/STOU *LIBL/REFERENCIA)
+002000130814     A            X2STOS    R        O  6 39REFFLD(REFER/STOS *LIBL/REFERENCIA)
+002010130814     A            X2USER        10A  O  6 42
+002020130814     A N49                                  COLOR(BLU)
+002030130814     A  49                                  COLOR(YLW)
+002040130814     A            X2FECH    R        O  6 53REFFLD(FACT)
+002050130814     A                                      TEXT('Fecha')
+002060130814     A            X2MARP         1A  O  6 60
+002070130814     A            X2WP14         1S 0O  6 62
+002080130814     A            X2NPRO    R        O  6 64REFFLD(REFER/NPRO *LIBL/REFERENCIA)
+002090130814     A                                      EDTCDE(Z)
+002100130814     A                                      COLOR(PNK)
+002110040107     A**IN21: Speedway V1 y marca de qué Nro. de Póliza se visualiza.
+002120040107     A**IN22: Color para identificar Speedway V2.
+002130040107     A*
+002140130814     A            X2IPOC    R        O  6 69REFFLD(REFER/POLI *LIBL/REFERENCIA)
+002150130814     A                                      EDTCDE(Z)
+002160130814     A  21                                  DSPATR(HI)
+002170130814     A  22                                  COLOR(TRQ)
+002180130814     A            X2SUCU         2A  H
+002190130814     A            X2EMPR         1A  H
+002200040107     A*Campo que no se visualiza e indica la Versión de Speedway.
+002210040107     A*"1": Versión 1.
+002220040107     A*"2": Versión 2.
+002230040107     A*
+002240130814     A            X2VERS    R        H      REFFLD(MARP)
+002250130814     A                                      TEXT('Versión Speedway')
+002260040107     A*%%GP SCREEN2    01
+002270040416     A          R PAR310C1
+002280040416     A*%%TS  DD  20040416  135401  INF1LEOP    REL-V4.0    WDSCi
+002290040416     A                                      SFLCTL(PAR310S1)
+002300040416     A                                      SFLSIZ(10)
+002310040416     A                                      SFLPAG(10)
+002320040416     A                                      WINDOW(6 2 16 75)
+002330040416     A                                      VLDCMDKEY(29)
+002340040416     A                                      PAGEDOWN(91)
+002350040416     A                                      PAGEUP(92)
+002360040416     A                                      CF10
+002370040416     A                                      KEEP
+002380040416     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+002390040416     A                                      OVERLAY
+002400040416     A  30                                  SFLDSP
+002410040416     A  31                                  SFLDSPCTL
+002420040416     A  32                                  SFLCLR
+002430040416     A                                      WDWBORDER((*DSPATR HI))
+002440040416     A                                      CF12
+002450040416     A                                  1  1'Artículos/SuperPólizas Suspendidos-
+002460040416     A                                                                         -
+002470040416     A                                        '
+002480040416     A                                      DSPATR(UL)
+002490040416     A                                      COLOR(PNK)
+002500040416     A                                  2  1'1=Selecc'
+002510040416     A                                      DSPATR(UL)
+002520040416     A                                  2 10'4=Suprimir'
+002530040416     A                                      DSPATR(UL)
+002540040416     A                                  2 21'9=Concretar'
+002550040416     A                                      DSPATR(UL)
+002560040416     A                                  2 33'D=CambiarCadena'
+002570040416     A                                      DSPATR(UL)
+002580040416     A                                  2 49'F10=Buscar'
+002590040416     A                                      DSPATR(UL)
+002600040416     A                                  2 60'F12=Retornar'
+002610040416     A                                      DSPATR(UL)
+002620040416     A                                  3  1'OpArtícuSuperPóli.SupPolNueva    T-
+002630040416     A                                      ipo Ope  Usuario  Fecha St N Proc S-
+002640040416     A                                      peedW '
+002650040416     A                                      DSPATR(UL)
+002660040416     A  50        XXMSG         71A  O  4  1DSPATR(HI)
+002670040416     A                                      MSGID(&XIDMSG PROMSG)
+002680040416     A  30        XXARCD         6Y 0B  5  3TEXT('y')
+002690040416     A                                      DSPATR(HI)
+002700040416     A                                      CHECK(RB)
+002710040416     A                                      EDTCDE(Z)
+002720040416     A                                      COLOR(BLU)
+002730040416     A  30        XXSPO1         9Y 0B  5 10DSPATR(HI)
+002740040416     A                                      CHECK(RB)
+002750040416     A                                      EDTCDE(Z)
+002760040416     A                                      COLOR(BLU)
+002770040416     A            @@CAMP        10A  H
+002780040416     A            @@REGI        10A  H
+002790040416     A            XIDMSG         7A  H
+002800040416     A*%%GP SCREEN2    02
+002810981030     A          R PAR31003
+002820981030     A*%%TS  SD  19981030  120634  SAHR        REL-V3R7M0  5716-PW1
+002830981030     A                                      WINDOW(5 6 8 70)
+002840981030     A                                      VLDCMDKEY(29)
+002850981030     A                                      KEEP
+002860981030     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+002870981030     A                                      OVERLAY
+002880981030     A                                      WDWBORDER((*DSPATR HI))
+002890981030     A                                  2  1'Se ha completado el proceso de emi-
+002900981030     A                                      sión interactiva para esta Super-  '
+002910981030     A                                  3  1'Póliza. Pulse ENTER para asignar l-
+002920981030     A                                      os números de pólizas y/o endosos  '
+002930981030     A                                  4  1'correspondientes o pulse F3=Salir -
+002940981030     A                                      para dejar la operación suspendida.'
+002950981030     A                                  6  1'                                  -
+002960981030     A                                                                         -
+002970981030     A                                       '
+002980981030     A                                      DSPATR(UL)
+002990981030     A  90                              7  1'ENTER=Continuar ...'
+003000981030     A                                      DSPATR(HI)
+003010981030     A                                      DSPATR(UL)
+003020981030     A                                  7 63'F3=Salir'
+003030981030     A                                      DSPATR(UL)
+003040981030     A            XIDMSG         7A  H
+003050981030     A            @@REGI        10A  H
+003060981030     A            @@CAMP        10A  H
+003070981030     A*%%GP SCREEN3    01
+003080980923     A          R PAR31004
+003090980923     A*%%TS  SD  19980923  183045  SAHR        REL-V3R7M0  5716-PW1
+003100980923     A                                      WINDOW(5 6 8 70)
+003110980923     A                                      VLDCMDKEY(29)
+003120980923     A                                      KEEP
+003130980923     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+003140980923     A                                      OVERLAY
+003150980923     A                                      WDWBORDER((*DSPATR HI))
+003160980923     A                                  2  1'Se ha completado el circuito de em-
+003170980923     A                                      isión para esta SuperPóliza paro   '
+003180980923     A                                  3  1'dado que la misma corresponde a la-
+003190980923     A                                       categoría de SUSPENDIDA ESPECIAL  '
+003200980923     A                                  4  1'NO SE ASIGNA NUMERO DE POLIZA/ENDO-
+003210980923     A                                      SO en este momento. La operación   '
+003220980923     A                                  5  1'queda suspendida con código de Est-
+003230980923     A                                      ado 4...                           '
+003240980923     A                                  6  1'                                  -
+003250980923     A                                                                         -
+003260980923     A                                       '
+003270980923     A                                      DSPATR(UL)
+003280980923     A  90                              7  1'ENTER=Continuar ...'
+003290980923     A                                      DSPATR(HI)
+003300980923     A                                      DSPATR(UL)
+003310980923     A                                  7 63'F3=Salir'
+003320980923     A                                      DSPATR(UL)
+003330980923     A            @@CAMP        10A  H
+003340980923     A            @@REGI        10A  H
+003350980923     A            XIDMSG         7A  H
+003360980923     A*%%GP SCREEN4    01
+003370040416     A          R PAR31005
+003380040416     A*%%TS  DD  20040416  135401  INF1LEOP    REL-V4.0    WDSCi
+003390040416     A                                      WINDOW(15 4 5 70)
+003400040416     A                                      VLDCMDKEY(29)
+003410040416     A                                      KEEP
+003420040416     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+003430040416     A                                      OVERLAY
+003440040416     A                                      WDWBORDER((*DSPATR HI))
+003450040416     A                                      CF12
+003460040416     A                                  1  1'Endosos a SuperPólizas            -
+003470040416     A                                                                         -
+003480040416     A                                       '
+003490040416     A                                      DSPATR(UL)
+003500040416     A                                      COLOR(PNK)
+003510040416     A                                  2  1'Rama:'
+003520040416     A                                      DSPATR(UL)
+003530040416     A            X5RAMA    R     Y  B  2  7REFFLD(REFER/RAMA *LIBL/REFERENCIA)
+003540040416     A                                      DSPATR(HI)
+003550040416     A                                      COLOR(BLU)
+003560040416     A  51                                  ERRMSG('NO EXISTE RAMA/POLIZA.')
+003570040416     A  52                                  ERRMSG('RAMA/POLIZA INCLUIDA EN UN -
+003580040416     A                                      ARTICULO MULTIPOLIZA.')
+003590040416     A                                      EDTCDE(Z)
+003600040416     A            X5RAMD    R        O  2 10REFFLD(REFER/RAMD *LIBL/REFERENCIA)
+003610040416     A                                      DSPATR(UL)
+003620040416     A                                  2 31'Póliza:'
+003630040416     A                                      DSPATR(UL)
+003640040416     A            X5POLI    R     Y  B  2 39REFFLD(REFER/POLI *LIBL/REFERENCIA)
+003650040416     A                                      DSPATR(HI)
+003660040416     A                                      CHECK(RB)
+003670040416     A                                      EDTCDE(Z)
+003680040416     A                                      COLOR(BLU)
+003690040416     A                                  4  1'F4=Solicitud'
+003700040416     A                                      DSPATR(UL)
+003710040416     A  90                              4 15'ENTER=Continuar ...'
+003720040416     A                                      DSPATR(HI)
+003730040416     A                                      DSPATR(UL)
+003740040416     A                                  4 59'F12=Retornar'
+003750040416     A                                      DSPATR(UL)
+003760040416     A            @@CAMP        10A  H
+003770040416     A            @@REGI        10A  H
+003780040416     A            XIDMSG         7A  H
+003790040416     A*%%GP SCREEN5    01
+003800981109     A          R PAR31006
+003810981109     A*%%TS  SD  19981109  125622  SAHR        REL-V3R7M0  5716-PW1
+003820981109     A                                      VLDCMDKEY(29)
+003830981109     A                                      KEEP
+003840981109     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+003850981109     A                                      OVERLAY
+003860981109     A                                      WINDOW(5 6 10 70)
+003870981109     A                                      WDWBORDER((*DSPATR HI))
+003880981109     A                                  2  1'Se ha completado el circuito de em-
+003890981109     A                                      isión para esta SuperPóliza que    '
+003900981109     A                                  3  1'corresponde a la categoría de SUSP-
+003910981109     A                                      ENDIDA ESPECIAL, pero dado que la  '
+003920981109     A                                  4  1'actual transacción corresponde a u-
+003930981109     A                                      n ENDOSO con prima NEGATIVA o CERO,'
+003940981109     A                                  5  1'no tiene caso dejar la operación c-
+003950981109     A                                      omo SUSPENDIDA ESPECIAL. Pulse     '
+003960981109     A                                  6  1'ENTER para asignar los números de -
+003970981109     A                                      póliza y/o endoso o pulse F3 para  '
+003980981109     A                                  7  1'dejarla con status de SUSPENDIDA C-
+003990981109     A                                      OMUN.                              '
+004000981109     A                                  8  1'                                  -
+004010981109     A                                                                         -
+004020981109     A                                       '
+004030981109     A                                      DSPATR(UL)
+004040981109     A  90                              9  1'ENTER=Continuar ...'
+004050981109     A                                      DSPATR(HI)
+004060981109     A                                      DSPATR(UL)
+004070981109     A                                  9 63'F3=Salir'
+004080981109     A                                      DSPATR(UL)
+004090981109     A            @@CAMP        10A  H
+004100981109     A            @@REGI        10A  H
+004110981109     A            XIDMSG         7A  H
+004120981109     A*%%GP SCREEN6    01
+004130040416     A          R PAR31007
+004140040416     A*%%TS  DD  20040416  135401  INF1LEOP    REL-V4.0    WDSCi
+004150040416     A                                      WINDOW(5 6 8 52)
+004160040416     A                                      VLDCMDKEY(29)
+004170040416     A                                      KEEP
+004180040416     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+004190040416     A                                      OVERLAY
+004200040416     A                                      WDWBORDER((*DSPATR HI))
+004210040416     A                                      CF12
+004220040416     A                                  1  1'Buscar por Número de SuperPóliza N-
+004230040416     A                                      uevo             '
+004240040416     A                                      DSPATR(UL)
+004250040416     A                                      COLOR(PNK)
+004260040416     A                                  3  1'Artículo:'
+004270040416     A                                      DSPATR(UL)
+004280040416     A            X7ARCD    R     Y  B  3 11REFFLD(REFER/ARCD *LIBL/REFERENCIA)
+004290040416     A                                      DSPATR(HI)
+004300040416     A                                      CHECK(RB)
+004310040416     A                                      EDTCDE(Z)
+004320040416     A  51                                  ERRMSG('NO EXISTE SUPERPOLIZA.')
+004330040416     A                                  3 18'SuperPóliza:'
+004340040416     A                                      DSPATR(UL)
+004350040416     A            X7SPOL    R     Y  B  3 31REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+004360040416     A                                      DSPATR(HI)
+004370040416     A                                      CHECK(RB)
+004380040416     A                                      EDTCDE(Z)
+004390040416     A                                  4  1'Asegurado:'
+004400040416     A                                      DSPATR(UL)
+004410040416     A            X7NOMB        40A  O  4 12DSPATR(HI)
+004420040416     A                                  6  1'                                  -
+004430040416     A                                                       '
+004440040416     A                                      DSPATR(UL)
+004450040416     A  90                              7  1'ENTER=Continuar ...'
+004460040416     A                                      DSPATR(HI)
+004470040416     A                                      DSPATR(UL)
+004480040416     A                                  7 31'F3=Salir'
+004490040416     A                                      DSPATR(UL)
+004500040416     A                                  7 40'F12=Retornar'
+004510040416     A                                      DSPATR(UL)
+004520040416     A            @@REGI        10A  H
+004530040416     A            XIDMSG         7A  H
+004540040416     A            @@CAMP        10A  H
+004550040416     A*%%GP SCREEN7    01
+004560040416     A          R PAR31008
+004570040416     A*%%TS  DD  20040416  135401  INF1LEOP    REL-V4.0    WDSCi
+004580040416     A                                      WINDOW(5 6 8 52)
+004590040416     A                                      VLDCMDKEY(29)
+004600040416     A                                      KEEP
+004610040416     A*                                     RTNCSRLOC(&@@REGI &@@CAMP)
+004620040416     A                                      OVERLAY
+004630040416     A                                      WDWBORDER((*DSPATR HI))
+004640040416     A                                      CF12
+004650040416     A                                  2  3'NO SE PUEDE CONCRETAR LA OPERACION-
+004660040416     A                                       SELECCIONADA'
+004670040416     A                                      DSPATR(UL)
+004680040416     A                                      DSPATR(HI)
+004690040416     A                                  3  3'POR QUE LA MISMA TIENE DISTINTO TI-
+004700040416     A                                      PO DE CAMBIO'
+004710040416     A                                      DSPATR(UL)
+004720040416     A                                      DSPATR(HI)
+004730040416     A                                  4  3'INGRESE POR EL PUNTO DE SUSPENDIDA-
+004740040416     A                                      S Y CONCRETE'
+004750040416     A                                      DSPATR(UL)
+004760040416     A                                      DSPATR(HI)
+004770040416     A                                  5  3'LA MISMA PASANDO POR TODAS LAS PAN-
+004780040416     A                                      TALLAS'
+004790040416     A                                      DSPATR(UL)
+004800040416     A                                      DSPATR(HI)
+004810040416     A                                  6  1'                                  -
+004820040416     A                                                       '
+004830040416     A                                      DSPATR(UL)
+004840040416     A                                  7 21'F12=Cancelar'
+004850040416     A                                      DSPATR(HI)
+004860040416     A            XIDMSG         7A  H
+004870040416     A            @@REGI        10A  H
+004880040416     A            @@CAMP        10A  H
+004890040416     A*%%GP SCREEN8    01
+004900040420     A          R PAR310LK                  TEXT('Para saltar a algún paso')
+004910040420     A*%%TS  DD  20040420  155745  INF1LEOP    REL-V4.0    WDSCi
+004920040420     A                                      WINDOW(2 15 20 50)
+004930040420     A                                      OVERLAY
+004940040420     A                                      CF12
+004950040420     A                                  1  1'Seleccione paso al cual desea ir..-
+004960040420     A                                      .'
+004970040420     A                                      DSPATR(UL)
+004980040420     A                                      DSPATR(HI)
+004990040420     A                                  2 39'F12=Cancelar'
+005000040420     A  31                              3  4'PASO  1 - Cabecera Póliza'
+005010040420     A            XLWP00    R        B  4  2REFFLD(MARP)
+005020040420     A                                      DSPATR(HI)
+005030040420     A                                      VALUES(' ' '1')
+005040040420     A                                      CHECK(ER)
+005050040420     A                                  4  6'a). Datos Generales de Póliza'
+005060040420     A  31        XLWP01    R    1   B  5  2REFFLD(MARP)
+005070040420     A                                      DSPATR(HI)
+005080040420     A                                      VALUES(' ' '1')
+005090040420     A                                      CHECK(ER)
+005100040420     A  31                              5  6'b). Cabecera Datos Rama'
+005110040420     A  32        XLWP02    R    1   B  6  1REFFLD(MARP)
+005120040420     A                                      DSPATR(HI)
+005130040420     A                                      VALUES(' ' '1')
+005140040420     A                                      CHECK(ER)
+005150040420     A  32                              6  4'PASO  2 - Textos'
+005160040420     A  33        XLWP03    R    1   B  7  1REFFLD(MARP)
+005170040420     A                                      DSPATR(HI)
+005180040420     A                                      VALUES(' ' '1')
+005190040420     A                                      CHECK(ER)
+005200040420     A  33                              7  4'PASO  3 - Cláusulas y Anexos'
+005210040420     A  34        XLWP04    R    1   B  8  1REFFLD(MARP)
+005220040420     A                                      DSPATR(HI)
+005230040420     A                                      VALUES(' ' '1')
+005240040420     A                                      CHECK(ER)
+005250040420     A  34                              8  4'PASO  4 - Bienes Asegurados'
+005260040420     A  35        XLWP05    R    1   B  9  1REFFLD(MARP)
+005270040420     A                                      DSPATR(HI)
+005280040420     A                                      VALUES(' ' '1')
+005290040420     A                                      CHECK(ER)
+005300040420     A  35                              9  4'PASO  5 - Cálculo de Prima a Premi-
+005310040420     A                                      o'
+005320040420     A  36        XLWP06    R    1   B 10  1REFFLD(MARP)
+005330040420     A                                      DSPATR(HI)
+005340040420     A                                      VALUES(' ' '1')
+005350040420     A                                      CHECK(ER)
+005360040420     A  36                             10  4'PASO  6 - Cálculo de Comisiones'
+005370040420     A  37        XLWP07    R    1   B 11  1REFFLD(MARP)
+005380040420     A                                      DSPATR(HI)
+005390040420     A                                      VALUES(' ' '1')
+005400040420     A                                      CHECK(ER)
+005410040420     A  37                             11  4'PASO  7 - Desconocido'
+005420040420     A  38        XLWP08    R    1   B 12  1REFFLD(MARP)
+005430040420     A                                      DSPATR(HI)
+005440040420     A                                      VALUES(' ' '1')
+005450040420     A                                      CHECK(ER)
+005460040420     A  38                             12  4'PASO  8 - Desconocido'
+005470040420     A  39        XLWP09    R    1   B 13  1REFFLD(MARP)
+005480040420     A                                      DSPATR(HI)
+005490040420     A                                      VALUES(' ' '1')
+005500040420     A                                      CHECK(ER)
+005510040420     A  39                             13  4'PASO  9 - Desconocido'
+005520040420     A  40        XLWP10    R    1   B 14  1REFFLD(MARP)
+005530040420     A                                      DSPATR(HI)
+005540040420     A                                      VALUES(' ' '1')
+005550040420     A                                      CHECK(ER)
+005560040420     A  40                             14  4'PASO 10 - Desconocido'
+005570040420     A  41        XLWP11    R    1   B 15  1REFFLD(MARP)
+005580040420     A                                      DSPATR(HI)
+005590040420     A                                      VALUES(' ' '1')
+005600040420     A                                      CHECK(ER)
+005610040420     A  41                             15  4'PASO 11 - Desconocido'
+005620040420     A  42        XLWP12    R    1   B 16  1REFFLD(MARP)
+005630040420     A                                      DSPATR(HI)
+005640040420     A                                      VALUES(' ' '1')
+005650040420     A                                      CHECK(ER)
+005660040420     A  42                             16  4'PASO 12 - Desconocido'
+005670040420     A  43        XLWP13    R    1   B 17  1REFFLD(MARP)
+005680040420     A                                      DSPATR(HI)
+005690040420     A                                      VALUES(' ' '1')
+005700040420     A                                      CHECK(ER)
+005710040420     A  43                             17  4'PASO 13 - Desconocido'
+005720040420     A  44        XLWP14    R    1   B 18  1REFFLD(MARP)
+005730040420     A                                      DSPATR(HI)
+005740040420     A                                      VALUES(' ' '1')
+005750040420     A                                      CHECK(ER)
+005760040420     A  44                             18  4'PASO 14 - Confirmación y Numeració-
+005770040420     A                                      n de Pólizas'
+005780040420     A  45        XLWP15    R    1   B 19  1REFFLD(MARP)
+005790040420     A                                      DSPATR(HI)
+005800040420     A                                      VALUES(' ' '1')
+005810040420     A                                      CHECK(ER)
+005820040420     A  45                             19  4'PASO 15 - Comisiones Anticipadas'
+005830040420     A*%%GP SCREEN9    01

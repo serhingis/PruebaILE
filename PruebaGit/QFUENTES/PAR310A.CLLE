@@ -1,0 +1,17 @@
+000100130807/*                                                                   +
+000200130807   07/08/2013 Inf1Marc                                               +
+000300130807    Se agrega liberación del grupo de activación PAR313C             +
+000400130807                                                                     +
+000401150710   10/07/2015 INF1SERG                                               +
+000402150710    Libero EFECTIVAMENTE el grupo de activación del PAR313C y elimi- +
+000500150710           no el RCLRSC.                                             +
+000600130807                                                                     +
+000700130807                                                                     +
+000800130807                                                                     +
+000900130807                                                                     */
+001000970318             PGM        PARM(&T@SBS)
+001100970318             DCL        VAR(&T@SBS) TYPE(*DEC) LEN(2 0)
+001200970318             CALL       PGM(PAR310)
+001300150710             RCLACTGRP  ACTGRP(PAR313C)
+001400150710             MONMSG     MSGID(CPF1653)
+001600970318             ENDPGM
