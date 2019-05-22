@@ -1,0 +1,124 @@
+000010130717     A*%%TS  SD  20130717  172624  INF1SERG    REL-V5R4M0  5722-WDS
+000020910611     A*  91/06/11  15:57:57    SAHR        REL-R03M00  5728-PW1
+000030130717     A*%%EC
+000040130717     A                                      DSPSIZ(24 80 *DS3)
+000050130717     A                                      REF(*LIBL/REFERENCIA REFER)
+000060130717     A                                      PRINT
+000070130717     A                                      HELP
+000080130716     A          R PAR31000
+000090970228     A*%%TS  SD  19970228  175925  SAHR        REL-V2R3M0  5738-PW1
+000100970228     A                                      KEEP
+000110970228     A                                      ASSUME
+000120970228     A                                  1  4' '
+000130130716     A          R PAR31001
+000140970317     A*%%TS  SD  19970317  163331  SAHR        REL-V2R3M0  5738-PW1
+000150970317     A                                      WINDOW(10 25 5 30)
+000160970317     A                                      KEEP
+000170970317     A                                      OVERLAY
+000180970317     A                                      WDWBORDER((*DSPATR HI))
+000190970317     A                                  2  3'Código de texto preseteado'
+000200970317     A                                      DSPATR(UL)
+000210101020     A            X1TPCD    R        B  4 13REFFLD(REFER/TPCD *LIBL/REFERENC-
+000220970317     A                                      IA)
+000230970317     A                                      DSPATR(HI)
+000240970317     A                                      COLOR(BLU)
+000250910611     A*  91/06/11  14:27:17    SAHR        REL-R03M00  5728-PW1
+000260130716     A          R PAR310S1                  SFL
+000270970317     A*%%TS  SD  19970317  163331  SAHR        REL-V2R3M0  5738-PW1
+000280101020     A            X1RETX    R   74A  B  7  1REFFLD(REFER/RETX *LIBL/REFERENC-
+000290970317     A                                      IA)
+000300970317     A                                      CHGINPDFT
+000310970317     A                                      CHECK(LC)
+000320970317     A                                      DSPATR(CS)
+000330970317     A                                      COLOR(BLU)
+000340910611     A*  91/06/11  14:27:17    SAHR        REL-R03M00  5728-PW1
+000350130716     A          R PAR310C1                  SFLCTL(PAR310S1)
+000360000919     A*%%TS  SD  20000919  132527  INF1MAX     REL-V4R4M0  5769-PW1
+000370000919     A                                      SFLSIZ(0200)
+000380000919     A                                      SFLPAG(0010)
+000390000919     A                                      WINDOW(4 2 18 74)
+000400000919     A                                      CA03
+000410000919     A                                      CA12
+000420000919     A                                      CF07
+000430000919     A                                      CF08
+000440000919     A                                      CF06
+000450000919     A                                      CF09
+000460000919     A                                      CF10
+000470000919     A                                      CF24
+000480000919     A                                      CF23
+000490000919     A                                      VLDCMDKEY(29)
+000500000919     A                                      KEEP
+000510000919     A                                      OVERLAY
+000520000919     A                                      SFLCSRRRN(&CURSOR)
+000530000919     A                                      SFLMODE(&MODO)
+000540000919     A  30                                  SFLDSP
+000550000919     A  31                                  SFLDSPCTL
+000560000919     A  32                                  SFLCLR
+000570000919     A  30                                  SFLEND(*MORE)
+000580000919     A                                      WDWBORDER((*DSPATR HI))
+000590000919     A                                      USRRSTDSP
+000600000919     A            MODO           1A  H
+000610000919     A            CURSOR         5S 0H
+000620000919     A                                  1  1'Textos de la SuperPóliza a nivel d-
+000630000919     A                                      e Componente de póliza             -
+000640000919     A                                          '
+000650000919     A                                      DSPATR(UL)
+000660000919     A                                  2  1'Artículo:'
+000670000919     A                                      DSPATR(UL)
+000680101020     A            XXARCD    R        O  2 11REFFLD(REFER/ARCD *LIBL/REFERENC-
+000690000919     A                                      IA)
+000700000919     A                                      DSPATR(HI)
+000710000919     A                                      EDTCDE(Z)
+000720000919     A                                  2 18'SuperPóliza:'
+000730000919     A                                      DSPATR(UL)
+000740101020     A            XXSPOL    R        O  2 31REFFLD(REFER/SPOL *LIBL/REFERENC-
+000750000919     A                                      IA)
+000760000919     A                                      DSPATR(HI)
+000770000919     A                                      EDTCDE(Z)
+000780000919     A                                  2 41'Suplemento:'
+000790000919     A                                      DSPATR(UL)
+000800101020     A            XXSSPO    R        O  2 53REFFLD(REFER/SSPO *LIBL/REFERENC-
+000810000919     A                                      IA)
+000820000919     A                                      DSPATR(HI)
+000830000919     A                                  3  1'Rama/Sec:'
+000840000919     A                                      DSPATR(UL)
+000850101020     A            XXRAMA    R        O  3 12REFFLD(REFER/RAMA *LIBL/REFERENC-
+000860000919     A                                      IA)
+000870000919     A                                      DSPATR(HI)
+000880101020     A            XXARSE    R        O  3 15REFFLD(REFER/ARSE *LIBL/REFERENC-
+000890000919     A                                      IA)
+000900000919     A                                      DSPATR(HI)
+000910000919     A                                  3 18'Operación..:'
+000920000919     A                                      DSPATR(UL)
+000930101020     A            XXOPER    R        O  3 33REFFLD(REFER/OPER *LIBL/REFERENC-
+000940000919     A                                      IA)
+000950000919     A                                      DSPATR(HI)
+000960000919     A                                      EDTCDE(Z)
+000970000919     A                                  3 41'Suplemento:'
+000980000919     A                                      DSPATR(UL)
+000990101020     A            XXSUOP    R        O  3 53REFFLD(REFER/SUOP *LIBL/REFERENC-
+001000000919     A                                      IA)
+001010000919     A                                      DSPATR(HI)
+001020000919     A                                  3 57'Componente:'
+001030000919     A                                      DSPATR(UL)
+001040000919     A            XXPOCO    R        O  3 69REFFLD(REFER/POCO *LIBL/REFERENCIA)
+001050000919     A                                      DSPATR(HI)
+001060000919     A                                  4  1'ENTER=Grabar  '
+001070000919     A                                      DSPATR(UL)
+001080000919     A                                  4 16'F12=Retornar     '
+001090000919     A                                      DSPATR(UL)
+001100000919     A                                  4 35'F6=Insertar        '
+001110000919     A                                      DSPATR(UL)
+001120000919     A                                  4 56'F7=Separar        '
+001130000919     A                                      DSPATR(UL)
+001140000919     A                                  5  1'F8=Unir Grupos'
+001150000919     A                                      DSPATR(UL)
+001160000919     A                                  5 16'F9=Suprimir Línea'
+001170000919     A                                      DSPATR(UL)
+001180000919     A                                  5 35'F10=Recuperar Texto'
+001190000919     A                                      DSPATR(UL)
+001200000919     A                                  5 56'F23=Inicializar   '
+001210000919     A                                      DSPATR(UL)
+001220000919     A  90                              6  1'ENTER=Continuar ...'
+001230000919     A                                      DSPATR(HI)
+001240000919     A                                      DSPATR(UL)

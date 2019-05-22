@@ -1,0 +1,850 @@
+000100141021     A*%%TS  SD  20141021  153044  INF1FER3    REL-V5R4M0  5722-WDS
+000200141021     A*%%EC
+000300040426     A*%%FD ARTICULOS: Cabecera Emisión               AXA.PGMR
+000400141021     A                                      DSPSIZ(24 80 *DS3)
+000500141021     A                                      REF(*LIBL/REFERENCIA REFER)
+000600141021     A                                      PRINT
+000700141021     A                                      CHECK(AB)
+000800141021     A                                      CA03
+000900141021     A                                      CF04
+001000141021     A                                      HELP(80)
+001100970228     A          R PAR310CA                  TEXT('Cabecera')
+001200970228     A*%%TS  SD  19970228  175633  SAHR        REL-V2R3M0  5738-PW1
+001300970228     A                                      KEEP
+001400970228     A                                      ASSUME
+001500970228     A                                  1  2' '
+001600970228     A*%%GP SCREEN1    01
+001700970228     A*%%GP SCREEN2    01
+001800970228     A*%%GP SCREEN3    03
+001900970228     A*%%GP SCREEN4    03
+002000971104     A          R PAR31000
+002100971104     A*%%TS  SD  19971104  101458  SAHR        REL-V3R7M0  5716-PW1
+002200971104     A                                      VLDCMDKEY(29)
+002300971104     A                                      WINDOW(5 5 8 42)
+002400971104     A                                      WDWBORDER((*DSPATR HI))
+002500971104     A                                  1  1'Endoso de Ajuste de Período       -
+002600971104     A                                              '
+002700971104     A                                      DSPATR(UL)
+002800971104     A                                  2  1'F3=Salir'
+002900971104     A                                      DSPATR(UL)
+003000971104     A                                  2 11'F4=Solicitud'
+003100971104     A                                      DSPATR(UL)
+003200971104     A  90                              2 25'ENTER=Continuar...'
+003300971104     A                                      DSPATR(UL)
+003400971104     A                                      DSPATR(HI)
+003500971104     A                                  4  1'Suplemento. . . . . . . . . . .'
+003600971104     A            X0SSPO    R     Y  B  4 33REFFLD(REFER/SSPO *LIBL/REFERENCIA)
+003700971104     A                                      DSPATR(HI)
+003800971104     A  51                                  ERRMSG('SUPLEMENTO NO CORRESPONDE A-
+003900971104     A                                       UNA FACTURACION.')
+004000971104     A                                  5  1'Vigencia Desde. . . . . . . . .'
+004100971104     A            X0DESD         8Y 0O  5 33EDTWRD('  /  /    ')
+004200971104     A*%%GP SCREEN2    02
+004300040426     A**IN07: Protege ciertos campos cuando se lo usa desde Speedway V1.
+004400040426     A**IN08: Protege ciertos campos cuando se lo usa desde Speedway V2.
+004500141021     A          R PAR31001
+004600141021     A*%%TS  SD  20141021  153044  INF1FER3    REL-V5R4M0  5722-WDS
+004700141021     A                                      WINDOW(3 2 20 72)
+004800141021     A                                      VLDCMDKEY(29)
+004900141021     A                                      CF20
+005000141021     A                                      CF21
+005100141021     A                                      CF07
+005200141021     A N07                                  CF08
+005300141021     A                                      KEEP
+005400141021     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+005500141021     A                                      OVERLAY
+005600141021     A                                      PROTECT
+005700141021     A                                      WDWBORDER((*DSPATR HI))
+005800141021     A                                  1  1'Datos de Cabecera de la SuperPóliz-
+005900141021     A                                      a:                                 -
+006000141021     A                                         '
+006100141021     A                                      DSPATR(UL)
+006200141021     A                                      COLOR(PNK)
+006300141021     A                                  2  1'Moneda:'
+006400141021     A                                      DSPATR(UL)
+006500141021     A            X1MONE    R        B  2  9REFFLD(REFER/MONE *LIBL/REFERENCIA)
+006600141021     A                                      DSPATR(HI)
+006700141021     A  03                                  DSPATR(PR)
+006800141021     A  61                                  ERRMSG('CODIGO DE MONEDA NO VALIDO.-
+006900141021     A                                      ')
+007000141021     A                                      CHECK(ER)
+007100141021     A                                      COLOR(BLU)
+007200141021     A            X1COME    R     Y  B  2 12REFFLD(REFER/COME *LIBL/REFERENCIA)
+007300141021     A                                      CHECK(RB)
+007400141021     A                                      EDTWRD('         ,      ')
+007500141021     A                                      DSPATR(HI)
+007600141021     A  19                                  DSPATR(PR)
+007700141021     A  63                                  ERRMSG('ERROR EN COTIZACION DE MONE-
+007800141021     A                                      DA DE EMISION.')
+007900141021     A                                      COLOR(BLU)
+008000141021     A            X1NMOL    R        O  2 29REFFLD(REFER/NMOL *LIBL/REFERENCIA)
+008100141021     A            X1SPOL    R        O  2 64REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+008200141021     A                                      DSPATR(HI)
+008300141021     A                                      EDTCDE(Z)
+008400141021     A                                      COLOR(PNK)
+008500141021     A                                      DSPATR(RI)
+008600141021     A                                  3  1'Asegurado:'
+008700141021     A                                      DSPATR(UL)
+008800141021     A            X1ASEN    R     Y  B  3 12REFFLD(REFER/ASEN *LIBL/REFERENCIA)
+008900141021     A                                      DSPATR(HI)
+009000141021     A  07
+009100141021     AO 08                                  DSPATR(PR)
+009200141021     A                                      EDTCDE(Z)
+009300141021     A                                      DSPATR(PC)
+009400141021     A                                      COLOR(BLU)
+009500141021     A  51                                  ERRMSG('NO EXISTE ASEGURADO con el -
+009600141021     A                                      código informado.')
+009700141021     A  62                                  ERRMSG('EL ASEGURADO TIENE LOS DATO-
+009800141021     A                                      S INCOMPLETOS.')
+009900150807     A  91                                  ERRMSG('AVISO:ASEGURADO C/POLIZAS A-
+010000150807     A                                      NULADAS X FALTA DE PAGO O DESIST.CI-
+010100150807     A                                      A')
+010200141021     A  13                                  ERRMSG('EL ASEGURADO ESTA BLOQUEADO-
+010300141021     A                                       PARA LA OPERACION QUE INTENTA HACE-
+010400141021     A                                      R.')
+010500141021     A            X1ASNO    R        O  3 20REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+010600141021     A                                  3 61'Pag:'
+010700141021     A                                      DSPATR(UL)
+010800141021     A            X1OPAG    R     Y  B  3 66REFFLD(OPAG)
+010900141021     A                                      DSPATR(HI)
+011000141021     A                                      EDTCDE(Z)
+011100141021     A  52                                  ERRMSG('NO EXISTE PAGADOR en DATOS -
+011200141021     A                                      FIALIATORIOS.')
+011300141021     A                                      COLOR(BLU)
+011400141021     A                                  4  1'Código de IVA:'
+011500141021     A                                      DSPATR(UL)
+011600141021     A            X1CIVA    R     Y  B  4 16REFFLD(REFER/CIVA *LIBL/REFERENCIA)
+011700141021     A                                      DSPATR(HI)
+011800141021     A                                      EDTCDE(Z)
+011900141021     A                                      COLOR(BLU)
+012000141021     A  86                                  ERRMSG('CODIGO DE IVA ERRONEO O NO -
+012100141021     A                                      VALIDO PARA EL ARTÍCULO QUE SE EMIT-
+012200141021     A                                      E.')
+012300141021     A  87                                  ERRMSG('CODIGO DE IVA 01/02/06 SOLO-
+012400141021     A                                       VALIDO CON NUMERO DE CUIT.')
+012500141021     A  73                                  ERRMSG('CODIGO DE IVA BLOQUEADO')
+012600141021     A  48                                  ERRMSG('Persona Jurídica no puede s-
+012700141021     A                                      er Consumidor Final')
+012800141021     A                                  4 40'CUIT:'
+012900141021     A            X1CUIT        13A  O  4 46
+013000141021     A                                  6  1'Ing.pro:'
+013100141021     A                                      DSPATR(UL)
+013200141021     A            X1FING         8Y 0B  6 10DSPATR(HI)
+013300141021     A                                      EDTWRD('  /  /    ')
+013400141021     A  03N08
+013500141021     AO 08                                  DSPATR(PR)
+013600141021     A  53                                  ERRMSG('FECHA INGRESO PROPUESTA No -
+013700141021     A                                      válida.')
+013800141021     A                                      COLOR(BLU)
+013900141021     A                                  6 21'Desde:'
+014000141021     A                                      DSPATR(UL)
+014100141021     A            X1DESD         8Y 0B  6 28DSPATR(HI)
+014200141021     A                                      EDTWRD('  /  /    ')
+014300141021     A  18N08
+014400141021     AO 08                                  DSPATR(PR)
+014500141021     A                                      COLOR(BLU)
+014600141021     A  54                                  ERRMSG('FECHA VIGENCIA DESDE No vál-
+014700141021     A                                      ida.')
+014800141021     A  97                                  ERRMSG('DIA DE VIGENCIA INVALIDO')
+014900141021     A                                  6 39'Meses/Años:'
+015000141021     A                                      DSPATR(UL)
+015100141021     A            X1MAR5         1A  O  6 51
+015200141021     A            X1DUPE    R     Y  B  6 53REFFLD(REFER/DUPE *LIBL/REFERENCIA)
+015300141021     A                                      DSPATR(HI)
+015400141021     A                                      EDTCDE(Z)
+015500141021     A  03                                  DSPATR(PR)
+015600141021     A                                      COLOR(BLU)
+015700141021     A  56                                  ERRMSG('CANTIDAD DE MESES NO PUEDE -
+015800141021     A                                      ESTAR EN CERO.')
+015900141021     A  95                                  ERRMSG('PARA VIGENCIA HASTA = 99/99-
+016000141021     A                                      /9999, DURACION PERIODO DEBE SER 99-
+016100141021     A                                      .')
+016200141021     A                                  6 56'Hasta:'
+016300141021     A                                      DSPATR(UL)
+016400141021     A            X1HAST         8Y 0B  6 63DSPATR(HI)
+016500141021     A                                      EDTWRD('  /  /    ')
+016600141021     A  03                                  DSPATR(PR)
+016700141021     A                                      COLOR(BLU)
+016800141021     A  55                                  ERRMSG('VIGENCIA HASTA No válida.')
+016900141021     A  57                                  ERRMSG('VIGENCIA HASTA DEBE SER MAY-
+017000141021     A                                      OR A VIGENCIA DESDE.')
+017100141021     A  94                                  ERRMSG('PARA DURACION DE PERIODO 99-
+017200141021     A                                       VIGENCIA HASTA DEBE SER 99/99/9999-
+017300141021     A                                      .')
+017400141021     A                                  7  1'Vendedor:'
+017500141021     A                                      DSPATR(UL)
+017600141021     A            X1NIVT    R     Y  B  7 11REFFLD(REFER/NIVT *LIBL/REFERENCIA)
+017700141021     A                                      DSPATR(HI)
+017800141021     A                                      EDTCDE(Z)
+017900141021     A                                      COLOR(BLU)
+018000141021     A  03N17N08
+018100141021     AO 08                                  DSPATR(PR)
+018200141021     A  58                                  ERRMSG('TIPO INTERMEDIARIO No válid-
+018300141021     A                                      o.')
+018400141021     A            X1NIVC    R     Y  B  7 13REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+018500141021     A                                      DSPATR(HI)
+018600141021     A                                      EDTCDE(Z)
+018700141021     A                                      COLOR(BLU)
+018800141021     A  03N17N08
+018900141021     AO 08                                  DSPATR(PR)
+019000141021     A  59                                  ERRMSG('NUMERO INTERMEDIARIO No vál-
+019100141021     A                                      ido.')
+019200141021     A  60                                  ERRMSG('ALGUN INTERMEDIARIO DE LA C-
+019300141021     A                                      ADENA ESTA BLOQUEADO PARA EMISION.')
+019400141021     A            X1NINO    R        O  7 19REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+019500141021     A                                  8  1'FormaPago:'
+019600141021     A                                      DSPATR(UL)
+019700141021     A            X1CFPG    R     Y  B  8 12REFFLD(REFER/CFPG *LIBL/REFERENCIA)
+019800141021     A                                      DSPATR(HI)
+019900141021     A  07                                  DSPATR(PR)
+020000141021     A                                      EDTCDE(Z)
+020100141021     A                                      COLOR(BLU)
+020200141021     A  70                                  ERRMSG('CODIGO DE FORMA DE PAGO DEB-
+020300141021     A                                      E SER 1/2/4/5/6/7.')
+020400141021     A  71                                  ERRMSG('EXISTE CONFLICTO ENTRE LAS -
+020500141021     A                                      FORMAS DE PAGO.')
+020600141021     A  65                                  ERRMSG('CODIGO DE PAGO 1=TARJETA Y -
+020700141021     A                                      LOS DATOS CON INCONSISTENTES.')
+020800141021     A  66                                  ERRMSG('CODIGO DE PAGO 7=TARJETA CU-
+020900141021     A                                      PONES Y LOS DATOS SON INCONSISTENTE-
+021000141021     A                                      S.')
+021100141021     A  67                                  ERRMSG('CODIGO DE PAGO 2/3 DEBITO B-
+021200141021     A                                      ANCARIO Y LOS DATOS SON INCONSISTEN-
+021300141021     A                                      TES.')
+021400141021     A  68                                  ERRMSG('CODIGO DE PAGO 4/6 COBRADOR-
+021500141021     A                                       COMUN Y LOS DATOS SON INCONSISTENT-
+021600141021     A                                      ES.')
+021700141021     A  69                                  ERRMSG('CODIGO DE PAGO 5 COBRADOR M-
+021800141021     A                                      UTUAL Y LOS DATOS SON INCONSISTENTE-
+021900141021     A                                      S.')
+022000141021     A  24                                  ERRMSG('CODIGO DE FORMA DE PAGO 6 Y-
+022100141021     A                                       NO HAY RECIBO INFORMADO.')
+022200141021     A  15                                  ERRMSG('CODIGO FORMA PAGO INVALIDO -
+022300141021     A                                      PARA LA RAMA')
+022400141021     A            X1DFPG        20A  O  8 14
+022500141021     A                                  8 35'Referencia:'
+022600141021     A                                      DSPATR(UL)
+022700141021     A            X1STRG         1A  B  8 47COLOR(BLU)
+022800141021     A                                      DSPATR(HI)
+022900141021     A  36                                  ERRMSG('CODIGO DEBE SER R=RECIBO S=-
+023000141021     A                                      SOLICITUD N=NO APLICABLE.')
+023100141021     A  27                                  ERRMSG('S/TIPO OPERACION Y FORMA DE-
+023200141021     A                                       PAGO CODIGO DEBE SER S=SOLICITUD R-
+023300141021     A                                      =RECIBO.')
+023400141021     A            X1CONR    R        B  8 49REFFLD(REFER/CONR *LIBL/REFERENCIA)
+023500141021     A                                      DSPATR(HI)
+023600141021     A                                      COLOR(BLU)
+023700141021     A                                      EDTCDE(Z)
+023800141021     A  49                                  ERRMSG('NUMERO DE RECIBO NO VALIDO.-
+023900141021     A                                      ')
+024000141021     A  37                                  ERRMSG('NUMERO DE SOLICITUD NO PUED-
+024100141021     A                                      E ESTAR EN CERO.')
+024200141021     A  38                                  ERRMSG('NUMERO DE RECIBO/SOLICITUD -
+024300141021     A                                      DEBE ESTAR EN CERO.')
+024400141021     A                                  8 57'Garantía:'
+024500141021     A                                      DSPATR(UL)
+024600141021     A            X1COCP    R        B  8 67REFFLD(REFER/STTC *LIBL/REFERENCIA)
+024700141021     A                                      DSPATR(HI)
+024800141021     A                                      COLOR(BLU)
+024900141021     A  76                                  ERRMSG('OPERACION GARANTIZADA DEBE -
+025000141021     A                                      SER 0=NO / 1=SI.')
+025100141021     A  33                                  ERRMSG('SEGUN LA FORMA DE PAGO LA O-
+025200141021     A                                      PERACIÓN DEBERÍA ESTAR GARANTIZADA.-
+025300141021     A                                      ')
+025400141021     A            X1SINO         4A  O  8 69
+025500141021     A                                  9  1'Cobrador:'
+025600141021     A                                      DSPATR(UL)
+025700141021     A            X1CBRN    R     Y  B  9 11REFFLD(REFER/NRDF *LIBL/REFERENCIA)
+025800141021     A                                      DSPATR(HI)
+025900141021     A                                      CHECK(RB)
+026000141021     A                                      EDTCDE(Z)
+026100141021     A                                      COLOR(BLU)
+026200141021     A  40                                  ERRMSG('TIPO DE COBRADOR NO VALIDO -
+026300141021     A                                      PARA CODIGO DE PAGO.')
+026400141021     A  64                                  ERRMSG('COBRADOR DEBE SER IGUAL AL -
+026500141021     A                                      VENDEDOR.')
+026600141021     A  70                                  ERRMSG('NO SE HA DEFINIDO FORMA DE -
+026700141021     A                                      PAGO.')
+026800141021     A  71                                  ERRMSG('EXISTE CONFLICTO ENTRE LAS -
+026900141021     A                                      FORMAS DE PAGO.')
+027000141021     A  72                                  ERRMSG('NO EXISTE CODIGO DE COBRADO-
+027100141021     A                                      R.')
+027200141021     A  74                                  ERRMSG('COBRADOR NO VALIDO CON LA Z-
+027300141021     A                                      ONA INDICADA.')
+027400141021     A            X1CZCO    R     Y  B  9 19REFFLD(REFER/CZCO *LIBL/REFERENCIA)
+027500141021     A                                      DSPATR(HI)
+027600141021     A                                      CHECK(RB)
+027700141021     A                                      EDTCDE(Z)
+027800141021     A  73                                  ERRMSG('NO EXISTE ZONA DE COBRANZA.-
+027900141021     A                                      ')
+028000141021     A                                      COLOR(BLU)
+028100141021     A            X1CONO    R        O  9 27REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+028200141021     A                                 10  1'Legajo:'
+028300141021     A                                      DSPATR(UL)
+028400141021     A            X1NRLA    R    7   B 10  9REFFLD(REFER/NRLA *LIBL/REFERENCIA)
+028500141021     A                                      DSPATR(HI)
+028600141021     A                                      COLOR(BLU)
+028700141021     A            X1NRLN    R     Y  B 10 17REFFLD(REFER/NRLN *LIBL/REFERENCIA)
+028800141021     A                                      DSPATR(HI)
+028900141021     A                                      CHECK(RB)
+029000141021     A                                      EDTCDE(Z)
+029100141021     A  75                                  ERRMSG('COBRADOR MUTUAL DEBE LLEVAR-
+029200141021     A                                       LEGAJO. CASO CONTRARIO NO DEBE INF-
+029300141021     A                                      ORMARSE.')
+029400141021     A                                      COLOR(BLU)
+029500141021     A                                 10 27'TarCredito:'
+029600141021     A                                      DSPATR(UL)
+029700141021     A            X1CTCU    R     Y  B 10 39REFFLD(REFER/CTCU *LIBL/REFERENCIA)
+029800141021     A                                      DSPATR(HI)
+029900141021     A                                      EDTCDE(Z)
+030000141021     A                                      COLOR(BLU)
+030100141021     A  80                                  ERRMSG('NO EXISTE Código empresa de-
+030200141021     A                                       Tarjeta.')
+030300141021     A  07
+030400141021     AO 23                                  DSPATR(PR)
+030500141021     A            X1NRTC    R     Y  B 10 43REFFLD(REFER/NRTC *LIBL/REFERENCIA)
+030600141021     A                                      DSPATR(HI)
+030700141021     A                                      EDTCDE(Z)
+030800141021     A                                      COLOR(BLU)
+030900141021     A  07
+031000141021     AO 23                                  DSPATR(PR)
+031100141021     A  81                                  ERRMSG('ERROR en Número de tarjeta -
+031200141021     A                                      de crédito.')
+031300141021     A  42                                  ERRMSG('Número de Tarjeta Inexisten-
+031400141021     A                                      te')
+031500141021     A  79                                  ERRMSG('Número de Tarjeta Bloqueada-
+031600141021     A                                      ')
+031700141021     A                                 11  1'Cupón:'
+031800141021     A                                      DSPATR(UL)
+031900141021     A            X1NRCT    R     Y  B 11  8REFFLD(REFER/NRCT *LIBL/REFERENCIA)
+032000141021     A                                      DSPATR(HI)
+032100141021     A                                      EDTCDE(Z)
+032200141021     A  88                                  ERRMSG('FALTA NRO.DE CUPON TARJETA -
+032300141021     A                                      DE CREDITO.')
+032400141021     A                                      COLOR(BLU)
+032500141021     A            X1EMTA        31A  O 11 16
+032600141021     A            X1MENT        25A  O 11 48
+032700141021     A                                 12  1'Débito Bancario:'
+032800141021     A                                      DSPATR(UL)
+032900141021     A            X1IVBC    R     Y  B 12 18REFFLD(REFER/IVBC *LIBL/REFERENCIA)
+033000141021     A                                      DSPATR(HI)
+033100141021     A                                      EDTCDE(Z)
+033200141021     A  84                                  ERRMSG('NO EXISTE CODIGO DE BANCO.')
+033300141021     A                                      COLOR(BLU)
+033400141021     A  07
+033500141021     AO 23                                  DSPATR(PR)
+033600141021     A            X1IVSU    R     Y  B 12 22REFFLD(REFER/IVSU *LIBL/REFERENCIA)
+033700141021     A                                      DSPATR(HI)
+033800141021     A                                      EDTCDE(Z)
+033900141021     A  85                                  ERRMSG('NO EXISTE CODIGO DE SUCURSA-
+034000141021     A                                      L BANCARIA.')
+034100141021     A                                      COLOR(BLU)
+034200141021     A  07
+034300141021     AO 23                                  DSPATR(PR)
+034400141021     A            X1TCTA    R     Y  B 12 26REFFLD(REFER/TCTA *LIBL/REFERENCIA)
+034500141021     A                                      DSPATR(HI)
+034600141021     A                                      CHECK(RB)
+034700141021     A                                      EDTCDE(Z)
+034800141021     A                                      COLOR(BLU)
+034900141021     A  82                                  ERRMSG('TIPO DE CUENTA NO DEBE ESTA-
+035000141021     A                                      R EN CERO.')
+035100141021     A  07
+035200141021     AO 23                                  DSPATR(PR)
+035300141021     A            X1NCTA    R   25   B 12 29REFFLD(REFER/NCTA *LIBL/REFERENCIA)
+035400141021     A                                      DSPATR(HI)
+035500141021     A                                      CHECK(RB)
+035600141021     A                                      COLOR(BLU)
+035700141021     A  07
+035800141021     AO 23                                  DSPATR(PR)
+035900141021     A  83                                  ERRMSG('FALTA O INCORRECTO NRO.DE C-
+036000141021     A                                      UENTA BANCARIA.')
+036100141021     A  77                                  ERRMSG('NUMERO DE CUENTA BANCARIA B-
+036200141021     A                                      LOQUEADO')
+036300141021     A  43                                  ERRMSG('NUMERO DE CUENTA BANCARIA I-
+036400141021     A                                      NEXISTENTE')
+036500141021     A                                 12 55'Coaseguro:'
+036600141021     A                                      DSPATR(UL)
+036700141021     A            X1WCOA    R     Y  B 12 66REFFLD(REFER/WCOA *LIBL/REFERENCIA)
+036800141021     A                                      DSPATR(HI)
+036900141021     A  03
+037000141021     AO 14                                  DSPATR(PR)
+037100141021     A  89                                  ERRMSG('CODIGO COASEGURO: 0=Sin/2=C-
+037200141021     A                                      oaseguro o código 2 y artículo NO F-
+037300141021     A                                      REE.')
+037400141021     A                                      COLOR(BLU)
+037500141021     A                                 13  1'Nro.Cobertura:'
+037600141021     A                                      DSPATR(UL)
+037700141021     A            X1COBN    R     Y  B 13 16REFFLD(REFER/COBN *LIBL/REFERENCIA)
+037800141021     A                                      DSPATR(HI)
+037900141021     A                                      EDTCDE(Z)
+038000141021     A                                      COLOR(BLU)
+038100141021     A  28                                  ERRMSG('NO EXISTE COBERTURA O NO ES-
+038200141021     A                                       POSIBLE SELECCIONARLA.')
+038300141021     A                                 13 24'Nro.Propuesta:'
+038400141021     A                                      DSPATR(UL)
+038500141021     A            X1SOLN    R     Y  B 13 39REFFLD(REFER/SOLN *LIBL/REFERENCIA)
+038600141021     A                                      DSPATR(HI)
+038700141021     A                                      COLOR(BLU)
+038800141021     A                                      EDTCDE(Z)
+038900141021     A                                 14  1'Soporte Comercial:'
+039000141021     A                                      DSPATR(UL)
+039100141021     A            X1NIT1    R     Y  B 14 20REFFLD(REFER/NIVT *LIBL/REFERENCIA)
+039200141021     A                                      DSPATR(HI)
+039300141021     A                                      EDTCDE(Z)
+039400141021     A                                      COLOR(BLU)
+039500141021     A  03N17                               DSPATR(PR)
+039600141021     A  25                                  ERRMSG('NO EXISTE O BLOQUEADO EL SO-
+039700141021     A                                      PORTE COMERCIALIZACIÓN.')
+039800141021     A            X1NIC1    R     Y  B 14 22REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+039900141021     A                                      DSPATR(HI)
+040000141021     A                                      EDTCDE(Z)
+040100141021     A                                      COLOR(BLU)
+040200141021     A  03N17                               DSPATR(PR)
+040300141021     A            X1NIN1    R        O 14 28REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+040400141021     A                                 15  1'Datos Crédito:'
+040500141021     A                                      DSPATR(UL)
+040600141021     A                                 15 16'Número:'
+040700141021     A                                      DSPATR(UL)
+040800141021     A            X1NCRE    R     Y  B 15 24REFFLD(REFER/NCRE *LIBL/REFERENCIA)
+040900141021     A                                      DSPATR(HI)
+041000141021     A                                      EDTCDE(Z)
+041100141021     A                                      COLOR(BLU)
+041200141021     A                                      CHECK(RB)
+041300141021     A  26                                  ERRMSG('INCONSISTENCIA EN DATOS DEL-
+041400141021     A                                       CREDITO O FECHA ERRONEA.')
+041500141021     A                                 15 40'Vto:'
+041600141021     A                                      DSPATR(UL)
+041700141021     A            X1FVTO         8Y 0B 15 45DSPATR(HI)
+041800141021     A                                      COLOR(BLU)
+041900141021     A                                      CHECK(RB)
+042000141021     A                                      EDTWRD('  /  /    ')
+042100141021     A                                 15 56'CantCuotas:'
+042200141021     A                                      DSPATR(UL)
+042300141021     A            X1CCUO    R     Y  B 15 68REFFLD(REFER/CCUO *LIBL/REFERENCIA)
+042400141021     A                                      DSPATR(HI)
+042500141021     A                                      EDTCDE(Z)
+042600141021     A                                      COLOR(BLU)
+042700141021     A                                 16  1'Refac.Autom.:'
+042800141021     A                                      DSPATR(UL)
+042900141021     A            X1MAR1         1A  B 16 15DSPATR(HI)
+043000141021     A                                      COLOR(BLU)
+043100141021     A  41                                  ERRMSG('COD.REFACTURACION AUTOMATIC-
+043200141021     A                                      A DEBE SER 0=NO/1=SI/9=NO REFACTURA-
+043300141021     A                                      BLE')
+043400141021     A                                 16 17'(0/1/9)'
+043500141021     A                                 16 25'Subartíc:'
+043600141021     A                                      DSPATR(UL)
+043700141021     A            X1SARC    R     Y  B 16 35REFFLD(REFER/OPAG *LIBL/REFERENCIA)
+043800141021     A                                      DSPATR(HI)
+043900141021     A                                      COLOR(BLU)
+044000141021     A                                      CHECK(RB)
+044100141021     A                                      EDTCDE(Z)
+044200141021     A  22                                  ERRMSG('CODIGO DE SUBARTICULO NO VA-
+044300141021     A                                      LIDO.')
+044400141021     A            X1SARD    R        O 16 43REFFLD(REFER/ARNO *LIBL/REFERENCIA)
+044500141021     A                                 17  1'Can.Min.Aseg:'
+044600141021     A            X1CMAS         6Y 0B 17 15EDTCDE(Z)
+044700141021     A                                 17 22'% Min.Ase:'
+044800141021     A            X1PMAS         5Y 2B 17 33EDTCDE(2)
+044900141021     A                                 17 40'% Contra:'
+045000141021     A            X1PACO         5Y 2B 17 50EDTCDE(2)
+045100141021     A                                 17 57'% Asegur:'
+045200141021     A            X1PAAS         5Y 2B 17 67EDTCDE(2)
+045300141021     A  90                             18  1'ENTER=Avanzar...'
+045400141021     A                                      DSPATR(HI)
+045500141021     A                                      DSPATR(UL)
+045600141021     A                                 19  1'F3=Salir'
+045700141021     A                                      DSPATR(UL)
+045800141021     A                                 19 10'F4=Solic'
+045900141021     A                                      DSPATR(UL)
+046000141021     A                                 19 19'F7=MásAseg'
+046100141021     A                                      DSPATR(UL)
+046200141021     A                                 19 30'F20=Cadena'
+046300141021     A                                      DSPATR(UL)
+046400141021     A                                 19 41'F21=ComSoporte'
+046500141021     A                                      DSPATR(UL)
+046600141021     A                                 19 56'F8=Tarjetas/Bcos'
+046700141021     A                                      DSPATR(UL)
+046800141021     A  07                                  DSPATR(ND)
+046900141021     A            X1COPR        15S 2H
+047000141021     A            @@CAMP        10A  H
+047100141021     A            @@REGI        10A  H
+047200141021     A            X1XOPR         5S 2H
+047300141021     A            XXEMSU        80A  H
+047400040426     A*%%GP SCREEN1    02
+047500141021     A            X1RUTA        16Y 0O  5 21
+047600141021     A            X1DIVA        20A  O  4 19
+047700141021     A                                  5  1'Número de R.U.T.A.:'
+047800141021     A                                      DSPATR(UL)
+047900001020     A          R PAR310S1
+048000001020     A*%%TS  SD  20001020  123421  INF1AHR     REL-V4R4M0  5769-PW1
+048100001020     A                                      SFL
+048200001020     A                                      CHANGE(92)
+048300001020     A            X2NCOC    R     Y  B  6  2REFFLD(REFER/NCOC *LIBL/REFERENCIA)
+048400001020     A                                      DSPATR(HI)
+048500001020     A                                      EDTCDE(Z)
+048600001020     A                                      CHECK(RB)
+048700001020     A  39                                  DSPATR(PR)
+048800001020     A  50                                  DSPATR(PC)
+048900001020     A            X2NACC         5A  O  6  8
+049000001020     A            X2PART    R     Y  B  6 14REFFLD(REFER/PART *LIBL/REFERENCIA)
+049100001020     A                                      DSPATR(HI)
+049200001020     A                                      CHECK(RB)
+049300001020     A                                      EDTWRD('   ,  ')
+049400001020     A            X2CPAR    R        B  6 21REFFLD(REFER/CPAR *LIBL/REFERENCIA)
+049500001020     A                                      DSPATR(HI)
+049600001020     A            X2COPC    R        B  6 23REFFLD(REFER/COPC *LIBL/REFERENCIA)
+049700001020     A                                      DSPATR(HI)
+049800001020     A            X2COPG    R     Y  B  6 25REFFLD(REFER/COPG *LIBL/REFERENCIA)
+049900001020     A                                      CHECK(RB)
+050000001020     A                                      EDTWRD('  ,   ')
+050100001020     A                                      DSPATR(HI)
+050200001020     A            X2GPIL    R     Y  B  6 32REFFLD(REFER/GPIL *LIBL/REFERENCIA)
+050300001020     A                                      CHECK(RB)
+050400001020     A                                      EDTWRD('          .  0,  -')
+050500001020     A                                      DSPATR(HI)
+050600001020     A            X2IN39         1A  H
+050700001020     A            X2CIAP         1A  H
+050800001020     A*%%GP SCREEN3    01
+050900001212     A          R PAR310C1
+051000001212     A*%%TS  SD  20001212  203131  INF1AHR     REL-V4R4M0  5769-PW1
+051100001212     A                                      SFLCTL(PAR310S1)
+051200001212     A                                      CA12
+051300001212     A                                      VLDCMDKEY(29)
+051400001212     A                                      KEEP
+051500001212     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+051600001212     A                                      OVERLAY
+051700001212     A                                      SFLCSRRRN(&CURSOR)
+051800001212     A                                      SFLMODE(&MODO)
+051900001212     A  30                                  SFLDSP
+052000001212     A  31                                  SFLDSPCTL
+052100001212     A  32                                  SFLCLR
+052200001212     A  30                                  SFLEND(*MORE)
+052300001212     A                                      SFLSIZ(10)
+052400001212     A                                      SFLPAG(5)
+052500001212     A  51                                  SFLMSG('ERROR EN CODIGO DE COMPAÑIA-
+052600001212     A                                       COASEGURADORA.')
+052700001212     A  52                                  SFLMSG('NO EXISTE NINGUNA COMPAÑIA -
+052800001212     A                                      PROPIA.')
+052900001212     A  53                                  SFLMSG('CODIGO DE COBRANZA DEBE SER-
+053000001212     A                                       1 O 2.')
+053100001212     A  54                                  SFLMSG('COD.DE COMISIONES DEBE SER -
+053200001212     A                                      1 O 2 EN PARTICIPANTE Y 0 EN PILOTO-
+053300001212     A                                      .')
+053400001212     A  55                                  SFLMSG('DEBE INFORMAR PORCENTAJE O -
+053500001212     A                                      IMPORTE DE PILOTAJE.')
+053600001212     A  56                                  SFLMSG('NO DEBE REPETIRSE LA CIA.CO-
+053700001212     A                                      ASEGURADORA.')
+053800001212     A  57                                  SFLMSG('SUMATORIA DE PORCENTAJES NO-
+053900001212     A                                       ES IGUAL A 100%')
+054000001212     A                                      WINDOW(8 5 12 50)
+054100001212     A                                      WDWBORDER((*DSPATR HI))
+054200001212     A                                  1 13'Composición del Coaseguro'
+054300001212     A                                      DSPATR(UL)
+054400001212     A                                  3  1'F12=Retornar'
+054500001212     A                                      DSPATR(UL)
+054600001212     A  90                              3 15'ENTER=Continuar ...'
+054700001212     A                                      DSPATR(HI)
+054800001212     A                                      DSPATR(UL)
+054900001212     A                                  4  1'CodCía Cía   %Par.CobCom.%Pil. Imp-
+055000001212     A                                      orte Pilotaje  '
+055100001212     A                                      DSPATR(UL)
+055200001212     A            MODO           1A  H
+055300001212     A            CURSOR         5S 0H
+055400001212     A            @@CAMP        10A  H
+055500001212     A            @@REGI        10A  H
+055600001212     A*%%GP SCREEN3    02
+055700991117     A          R PAR310S2
+055800991117     A*%%TS  SD  19991117  181439  AHR         REL-V4R2M0  5769-PW1
+055900991117     A                                      SFL
+056000991117     A                                      CHANGE(92)
+056100991117     A            X5OPCI         1A  B  6  1COLOR(BLU)
+056200991117     A                                      DSPATR(HI)
+056300991117     A                                      CHECK(ER)
+056400991117     A            X5ASEN    R        O  6  3REFFLD(REFER/ASEN *LIBL/REFERENCIA)
+056500991117     A                                      DSPATR(HI)
+056600991117     A                                      EDTCDE(Z)
+056700991117     A            X5NOMB    R        O  6 11REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+056800991117     A            X2IN39         1A  H
+056900991117     A            X2CIAP         1A  H
+057000991117     A*%%GP SCREEN4    01
+057100991117     A          R PAR310C2
+057200991117     A*%%TS  SD  19991117  185108  AHR         REL-V4R2M0  5769-PW1
+057300991117     A                                      SFLCTL(PAR310S2)
+057400991117     A                                      SFLSIZ(20)
+057500991117     A                                      SFLPAG(5)
+057600991117     A                                      WINDOW(8 5 12 50)
+057700991117     A                                      CA12
+057800991117     A                                      VLDCMDKEY(29)
+057900991117     A                                      KEEP
+058000991117     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+058100991117     A                                      OVERLAY
+058200991117     A                                      SFLCSRRRN(&CURSOR)
+058300991117     A                                      SFLMODE(&MODO)
+058400991117     A  30                                  SFLDSP
+058500991117     A  31                                  SFLDSPCTL
+058600991117     A  32                                  SFLCLR
+058700991117     A  30                                  SFLEND(*MORE)
+058800991117     A  51                                  SFLMSG('ERROR EN CODIGO DE COMPAÑIA-
+058900991117     A                                       COASEGURADORA.')
+059000991117     A  52                                  SFLMSG('NO EXISTE NINGUNA COMPAÑIA -
+059100991117     A                                      PROPIA.')
+059200991117     A  53                                  SFLMSG('CODIGO DE COBRANZA DEBE SER-
+059300991117     A                                       1 O 2.')
+059400991117     A  54                                  SFLMSG('CODIGO DE COMISIONES DEBE S-
+059500991117     A                                      ER 1 O 2.')
+059600991117     A  55                                  SFLMSG('DEBE INFORMAR PORCENTAJE O -
+059700991117     A                                      IMPORTE DE PILOTAJE.')
+059800991117     A  56                                  SFLMSG('NO DEBE REPETIRSE LA CIA.CO-
+059900991117     A                                      ASEGURADORA.')
+060000991117     A  57                                  SFLMSG('SUMATORIA DE PORCENTAJES NO-
+060100991117     A                                       ES IGUAL A 100%')
+060200991117     A                                      WDWBORDER((*DSPATR HI))
+060300991117     A                                  1  1'Asegurados Adicionales de SuperPól-
+060400991117     A                                      izas            '
+060500991117     A                                      DSPATR(UL)
+060600991117     A                                      COLOR(PNK)
+060700991117     A                                  2  1'4=Suprimir'
+060800991117     A                                      DSPATR(UL)
+060900991117     A  90                              2 12'Enter=Concretar...'
+061000991117     A                                      DSPATR(UL)
+061100991117     A                                      DSPATR(HI)
+061200991117     A                                  2 39'F12=Retornar'
+061300991117     A                                      DSPATR(UL)
+061400991117     A                                      DSPATR(HI)
+061500991117     A            XXASEN    R     Y  B  4  3REFFLD(REFER/ASEN *LIBL/REFERENCIA)
+061600991117     A                                      DSPATR(HI)
+061700991117     A                                      EDTCDE(Z)
+061800991117     A                                      CHECK(RB)
+061900991117     A                                      COLOR(BLU)
+062000991117     A  51                                  ERRMSG('ASEGURADO NO VALIDO.')
+062100991117     A  52                                  ERRMSG('YA EXISTE ASEGURADO.')
+062200991117     A  53                                  ERRMSG('NO PUEDE REPETIR EL ASEGURA-
+062300991117     A                                      DO PRINCIPAL.')
+062400991117     A            XXNOMB    R        O  4 11REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+062500991117     A            CURSOR         5S 0H
+062600991117     A            MODO           1A  H
+062700991117     A            @@REGI        10A  H
+062800991117     A            @@CAMP        10A  H
+062900991117     A*%%GP SCREEN4    02
+063000970428     A          R PAR31003
+063100970428     A*%%TS  SD  19970428  154733  SAHR        REL-V3R2M0  5763-PW1
+063200970428     A                                      WINDOW(7 2 8 63)
+063300970428     A                                      VLDCMDKEY(29)
+063400970428     A                                      CA12
+063500970428     A                                      KEEP
+063600970428     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+063700970428     A                                      OVERLAY
+063800970428     A                                      PROTECT
+063900970428     A                                      WDWBORDER((*DSPATR HI))
+064000970428     A                                  1  1'Control de la Cadena de Comerciali-
+064100970428     A                                      zación                       '
+064200970428     A                                      DSPATR(UL)
+064300970428     A                                  3  1'Intermediario de nivel Superior:'
+064400970428     A                                      DSPATR(UL)
+064500970428     A                                  4  1'Código y Nro.:'
+064600970428     A                                      DSPATR(UL)
+064700970428     A            X3NIVT    R        B  4 16REFFLD(REFER/NIVT *LIBL/REFERENCIA)
+064800970428     A                                      DSPATR(HI)
+064900970428     A                                      COLOR(BLU)
+065000970428     A                                      EDTCDE(Z)
+065100970428     A  51                                  ERRMSG('NO EXISTE INTERMEDIARIO O B-
+065200970428     A                                      LOQUEADO.')
+065300970428     A  52                                  ERRMSG('NO CORRESPONDE EL INTERMEDI-
+065400970428     A                                      ARIO DE NIVEL SUPERIOR.')
+065500970428     A            X3NIVC    R     Y  B  4 18REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+065600970428     A                                      DSPATR(HI)
+065700970428     A                                      COLOR(BLU)
+065800970428     A                                      EDTCDE(Z)
+065900970428     A            X3NOMB        40A  O  4 24
+066000970428     A                                  6  1'F12=Retornar'
+066100970428     A                                      DSPATR(UL)
+066200970428     A                                  6 15'F4=Solicitud'
+066300970428     A                                      DSPATR(UL)
+066400970428     A  90                              6 29'ENTER=Continuar ...'
+066500970428     A                                      DSPATR(HI)
+066600970428     A                                      DSPATR(UL)
+066700970428     A            @@REGI        10A  H
+066800970428     A            @@CAMP        10A  H
+066900970428     A*%%GP SCREEN5    01
+067000981023     A          R PAR31004
+067100981023     A*%%TS  SD  19981023  154757  SAHR        REL-V3R7M0  5716-PW1
+067200981023     A                                      VLDCMDKEY(29)
+067300981023     A                                      CA12
+067400981023     A                                      KEEP
+067500981023     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+067600981023     A                                      OVERLAY
+067700981023     A                                      PROTECT
+067800981023     A                                      WINDOW(7 2 8 67)
+067900981023     A                                      WDWBORDER((*DSPATR HI))
+068000981023     A                                  1  1'Comisiones de Soportes de Comercia-
+068100981023     A                                      lización                         '
+068200981023     A                                      DSPATR(UL)
+068300981023     A                                  3  1'Soporte Comercial:'
+068400981023     A                                      DSPATR(UL)
+068500981023     A            X4NIVT    R        B  3 20REFFLD(REFER/NIVT *LIBL/REFERENCIA)
+068600981023     A                                      DSPATR(HI)
+068700981023     A                                      COLOR(BLU)
+068800981023     A                                      EDTCDE(Z)
+068900981023     A  51                                  ERRMSG('NO EXISTE INTERMEDIARIO O B-
+069000981023     A                                      LOQUEADO.')
+069100981023     A  52                                  ERRMSG('NO CORRESPONDE EL INTERMEDI-
+069200981023     A                                      ARIO DE NIVEL SUPERIOR.')
+069300981023     A                                      DSPATR(PR)
+069400981023     A            X4NIVC    R     Y  B  3 22REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+069500981023     A                                      DSPATR(HI)
+069600981023     A                                      COLOR(BLU)
+069700981023     A                                      EDTCDE(Z)
+069800981023     A                                      DSPATR(PR)
+069900981023     A            X4NOMB        40A  O  3 28
+070000981023     A                                  5  1'% de Comisión:'
+070100981023     A                                      DSPATR(UL)
+070200981023     A            X4XOPR    R        O  5 16REFFLD(REFER/XOPR *LIBL/REFERENCIA)
+070300981023     A                                      EDTWRD('   ,  %')
+070400981023     A                                      DSPATR(HI)
+070500981023     A                                  5 24'Importe de Comisión:'
+070600981023     A                                      DSPATR(UL)
+070700981023     A            X4COPR    R        O  5 45REFFLD(REFER/COPR *LIBL/REFERENCIA)
+070800981023     A                                      EDTWRD('       .   . 0 ,  -')
+070900981023     A                                      DSPATR(HI)
+071000981023     A                                  7  1'F12=Retornar'
+071100981023     A                                      DSPATR(UL)
+071200981023     A                                  7 14'ENTER=Continuar ...'
+071300981023     A                                      DSPATR(HI)
+071400981023     A                                      DSPATR(UL)
+071500981023     A            @@REGI        10A  H
+071600981023     A            @@CAMP        10A  H
+071700981023     A*%%GP SCREEN6    01
+071800000830     A          R PAR31005
+071900000830     A*%%TS  SD  20000830  165900  INF1AHR     REL-V4R4M0  5769-PW1
+072000000830     A                                      WINDOW(7 4 15 65)
+072100000830     A                                      VLDCMDKEY(29)
+072200000830     A                                      CA12
+072300000830     A                                      KEEP
+072400000830     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+072500000830     A                                      OVERLAY
+072600000830     A                                      PROTECT
+072700000830     A                                      WDWBORDER((*DSPATR HI))
+072800000830     A                                  1  1'Cadena de intermediarios de la ope-
+072900000830     A                                      ración:'
+073000000830     A                                      DSPATR(UL)
+073100000830     A                                  2  1'Nivel que emite:'
+073200000830     A                                      DSPATR(UL)
+073300000830     A            X5NIVT    R        O  2 18REFFLD(REFER/NIVT *LIBL/REFERENCIA)
+073400000830     A                                      DSPATR(HI)
+073500000830     A                                      COLOR(BLU)
+073600000830     A                                      EDTCDE(Z)
+073700000830     A                                      DSPATR(UL)
+073800000830     A            X5NIVC    R     Y  O  2 20REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+073900000830     A                                      DSPATR(HI)
+074000000830     A                                      COLOR(BLU)
+074100000830     A                                      EDTCDE(Z)
+074200000830     A                                      DSPATR(UL)
+074300000830     A            X5NOMB        40A  O  2 26
+074400000830     A                                  4  1'Nivel 1:'
+074500000830     A                                      DSPATR(UL)
+074600000830     A            X5NIV1    R     Y  B  4 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+074700000830     A                                      DSPATR(HI)
+074800000830     A                                      COLOR(BLU)
+074900000830     A                                      EDTCDE(Z)
+075000000830     A  51                                  ERRMSG('NO EXISTE INTERMEDIARIO 1 O-
+075100000830     A                                       SE ENCUENTRA BLOQUEADO.')
+075200000830     A  16
+075300000830     AO 03N17                               DSPATR(PR)
+075400000830     A            X5NOM1        40A  O  4 16
+075500000830     A                                  5  1'Nivel 2:'
+075600000830     A                                      DSPATR(UL)
+075700000830     A            X5NIV2    R     Y  B  5 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+075800000830     A                                      DSPATR(HI)
+075900000830     A                                      COLOR(BLU)
+076000000830     A                                      EDTCDE(Z)
+076100000830     A  52                                  ERRMSG('NO EXISTE INTERMEDIARIO 2 O-
+076200000830     A                                       SE ENCUENTRA BLOQUEADO.')
+076300000830     A  16
+076400000830     AO 03N17                               DSPATR(PR)
+076500000830     A            X5NOM2        40A  O  5 16
+076600000830     A                                  6  1'Nivel 3:'
+076700000830     A                                      DSPATR(UL)
+076800000830     A            X5NIV3    R     Y  B  6 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+076900000830     A                                      DSPATR(HI)
+077000000830     A                                      COLOR(BLU)
+077100000830     A                                      EDTCDE(Z)
+077200000830     A  53                                  ERRMSG('NO EXISTE INTERMEDIARIO 3 O-
+077300000830     A                                       SE ENCUENTRA BLOQUEADO.')
+077400000830     A  16
+077500000830     AO 03N17                               DSPATR(PR)
+077600000830     A            X5NOM3        40A  O  6 16
+077700000830     A                                  7  1'Nivel 4:'
+077800000830     A                                      DSPATR(UL)
+077900000830     A            X5NIV4    R     Y  B  7 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+078000000830     A                                      DSPATR(HI)
+078100000830     A                                      COLOR(BLU)
+078200000830     A                                      EDTCDE(Z)
+078300000830     A  54                                  ERRMSG('NO EXISTE INTERMEDIARIO 4 O-
+078400000830     A                                       SE ENCUENTRA BLOQUEADO.')
+078500000830     A  16
+078600000830     AO 03N17                               DSPATR(PR)
+078700000830     A            X5NOM4        40A  O  7 16
+078800000830     A                                  8  1'Nivel 5:'
+078900000830     A                                      DSPATR(UL)
+079000000830     A            X5NIV5    R     Y  B  8 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+079100000830     A                                      DSPATR(HI)
+079200000830     A                                      COLOR(BLU)
+079300000830     A                                      EDTCDE(Z)
+079400000830     A  55                                  ERRMSG('NO EXISTE INTERMEDIARIO 5 O-
+079500000830     A                                       SE ENCUENTRA BLOQUEADO.')
+079600000830     A  16
+079700000830     AO 03N17                               DSPATR(PR)
+079800000830     A            X5NOM5        40A  O  8 16
+079900000830     A                                  9  1'Nivel 6:'
+080000000830     A                                      DSPATR(UL)
+080100000830     A            X5NIV6    R     Y  B  9 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+080200000830     A                                      DSPATR(HI)
+080300000830     A                                      COLOR(BLU)
+080400000830     A                                      EDTCDE(Z)
+080500000830     A  56                                  ERRMSG('NO EXISTE INTERMEDIARIO 6 O-
+080600000830     A                                       SE ENCUENTRA BLOQUEADO.')
+080700000830     A  16
+080800000830     AO 03N17                               DSPATR(PR)
+080900000830     A            X5NOM6        40A  O  9 16
+081000000830     A                                 10  1'Nivel 7:'
+081100000830     A                                      DSPATR(UL)
+081200000830     A            X5NIV7    R     Y  B 10 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+081300000830     A                                      DSPATR(HI)
+081400000830     A                                      COLOR(BLU)
+081500000830     A                                      EDTCDE(Z)
+081600000830     A  57                                  ERRMSG('NO EXISTE INTERMEDIARIO 7 O-
+081700000830     A                                       SE ENCUENTRA BLOQUEADO.')
+081800000830     A  16
+081900000830     AO 03N17                               DSPATR(PR)
+082000000830     A            X5NOM7        40A  O 10 16
+082100000830     A                                 11  1'Nivel 8:'
+082200000830     A                                      DSPATR(UL)
+082300000830     A            X5NIV8    R     Y  B 11 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+082400000830     A                                      DSPATR(HI)
+082500000830     A                                      COLOR(BLU)
+082600000830     A                                      EDTCDE(Z)
+082700000830     A  58                                  ERRMSG('NO EXISTE INTERMEDIARIO 8 O-
+082800000830     A                                       SE ENCUENTRA BLOQUEADO.')
+082900000830     A  16
+083000000830     AO 03N17                               DSPATR(PR)
+083100000830     A            X5NOM8        40A  O 11 16
+083200000830     A                                 12  1'Nivel 9:'
+083300000830     A                                      DSPATR(UL)
+083400000830     A            X5NIV9    R     Y  B 12 10REFFLD(REFER/NIVC *LIBL/REFERENCIA)
+083500000830     A                                      DSPATR(HI)
+083600000830     A                                      COLOR(BLU)
+083700000830     A                                      EDTCDE(Z)
+083800000830     A  59                                  ERRMSG('NO EXISTE INTERMEDIARIO 9 O-
+083900000830     A                                       SE ENCUENTRA BLOQUEADO.')
+084000000830     A  16
+084100000830     AO 03N17                               DSPATR(PR)
+084200000830     A            X5NOM9        40A  O 12 16
+084300000830     A                                 14  1'F12=Retornar'
+084400000830     A                                      DSPATR(UL)
+084500000830     A                                 14 14'ENTER=Continuar ...'
+084600000830     A                                      DSPATR(HI)
+084700000830     A                                      DSPATR(UL)
+084800000830     A            @@REGI        10A  H
+084900000830     A            @@CAMP        10A  H
+085000000830     A*%%GP SCREEN7    01

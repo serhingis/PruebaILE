@@ -1,0 +1,240 @@
+000100050708     A*%%TS  DD  20050707  164900  INF1LEOP    REL-V5.0.1  WDSc
+000200050708     A*SLU 15/04/2004 - Este fuente contiene instrucciones para la conversión
+000300050708     A*Webfacing marcadas con "*%%WB", rogamos usar CODE Designer para cambiar
+000400050708     A*este fuente y no SDA, muchas gracias.
+000500050708     A*%%FD WEBFACING-ARTICULO Detalle 1 Emision
+000600050708     A*%%EC
+000700050708     A                                      DSPSIZ(24 80 *DS3)
+000800050708     A                                      REF(*LIBL/REFERENCIA REFER)
+000900050708     A                                      PRINT
+001000050708     A                                      CHECK(AB)
+001100050708     A                                      CF04
+001200050708     A                                      HELP(80)
+001300050708     A                                      CF03
+001400050708     A                                      CF12
+001500050708     A  23                                  CF17
+001600970228     A          R PAR310CA                  TEXT('Cabecera')
+001700970228     A*%%TS  SD  19970228  175839  SAHR        REL-V2R3M0  5738-PW1
+001800970228     A                                      KEEP
+001900970228     A                                      ASSUME
+002000970228     A                                  1  2' '
+002100970228     A*%%GP SCREEN1    02
+002200050708     A          R PAR31001
+002300050708     A*%%TS  DD  20050707  164900  INF1LEOP    REL-V5.0.1  WDSc
+002400050708     A                                      WINDOW(7 8 15 65)
+002500050708     A                                      VLDCMDKEY(29)
+002600050708     A                                      KEEP
+002700050708     A                                      RTNCSRLOC(&@@REGI &@@CAMP)
+002800050708     A                                      OVERLAY
+002900050708     A                                      PROTECT
+003000050708     A                                      WDWBORDER((*DSPATR HI))
+003100050708     A                                  1  1'Datos de Detalle de la SuperPoliza-
+003200050708     A                                      :                      '
+003300050708     A                                      DSPATR(UL)
+003400050708     A                                      COLOR(PNK)
+003500050708     A                                  1 59'PAR310D'
+003600050708     A                                      COLOR(PNK)
+003700050708     A                                  2  1'Articulo:'
+003800050708     A                                      DSPATR(UL)
+003900050708     A            X1ARCD    R        O  2 11REFFLD(REFER/ARCD *LIBL/REFERENCIA)
+004000050708     A                                      DSPATR(HI)
+004100050708     A                                      EDTCDE(Z)
+004200050708     A                                  2 18'SuperPoliza.:'
+004300050708     A                                      DSPATR(UL)
+004400050708     A            X1SPOL    R        O  2 33REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+004500050708     A                                      DSPATR(HI)
+004600050708     A                                      EDTCDE(Z)
+004700050708     A                                  2 43'Suplemento:'
+004800050708     A                                      DSPATR(UL)
+004900050708     A            X1SSPO    R        O  2 55REFFLD(REFER/SSPO *LIBL/REFERENCIA)
+005000050708     A                                      DSPATR(HI)
+005100050708     A                                  3  1'Rama/Sec:'
+005200050708     A                                      DSPATR(UL)
+005300050708     A            X1RAMA    R        O  3 12REFFLD(REFER/RAMA *LIBL/REFERENCIA)
+005400050708     A                                      DSPATR(HI)
+005500050708     A            X1ARSE    R        O  3 15REFFLD(REFER/ARSE *LIBL/REFERENCIA)
+005600050708     A                                      DSPATR(HI)
+005700050708     A                                  3 18'Operacion...:'
+005800050708     A                                      DSPATR(UL)
+005900050708     A            X1OPER    R        O  3 35REFFLD(REFER/OPER *LIBL/REFERENCIA)
+006000050708     A                                      DSPATR(HI)
+006100050708     A                                      EDTCDE(Z)
+006200050708     A                                  3 43'Suplemento:'
+006300050708     A                                      DSPATR(UL)
+006400050708     A            X1SUOP    R        O  3 55REFFLD(REFER/SUOP *LIBL/REFERENCIA)
+006500050708     A                                      DSPATR(HI)
+006600050708     A                                  4 18'FechaEmisión:'
+006700050708     A                                      DSPATR(UL)
+006800050708     A            X1FEMI         8Y 0O  4 32EDTWRD('  /  /    ')
+006900050708     A                                      DSPATR(HI)
+007000050708     A                                  5  1'F3=Salir'
+007100050708     A                                      DSPATR(UL)
+007200050708     A                                  5 10'F4=Solicitud'
+007300050708     A                                      DSPATR(UL)
+007400050708     A                                  5 23'F12=Retornar'
+007500050708     A                                      DSPATR(UL)
+007600050708     A                                  5 36'F17=Ir a..'
+007700050708     A                                      DSPATR(UL)
+007800050708     A  90                              5 47'ENTER=Continuar ...'
+007900050708     A                                      DSPATR(HI)
+008000050708     A                                      DSPATR(UL)
+008100050708     A                                  7  1'Coaseguro:'
+008200050708     A                                      DSPATR(UL)
+008300050708     A            X1NCOC    R     Y  B  7 12REFFLD(REFER/NCOC *LIBL/REFERENCIA)
+008400050708     A                                      DSPATR(HI)
+008500050708     A                                      CHECK(RB)
+008600050708     A                                      EDTCDE(Z)
+008700050708     A                                      COLOR(BLU)
+008800050708     A N17
+008900050708     AO 15                                  DSPATR(PR)
+009000050708     A  84                                  ERRMSG('CODIGO DE COMPAÑIA DE SEGUR-
+009100050708     A                                      OS NO VALIDA.')
+009200050708     A            X1PART    R        O  7 18REFFLD(REFER/PART *LIBL/REFERENCIA)
+009300050708     A                                      EDTWRD('   ,  ')
+009400050708     A                                      DSPATR(HI)
+009500050708     A            X1NOCO        40A  O  7 25
+009600050708     A                                  8  1'IniVigencia:'
+009700050708     A                                      DSPATR(UL)
+009800050708     A            X1DESD         8Y 0B  8 14DSPATR(HI)
+009900050708     A                                      EDTWRD('  /  /    ')
+010000050708     A  10
+010100050708     AO 12                                  DSPATR(PR)
+010200050708     A                                      COLOR(BLU)
+010300050708     A  14N10N12                            DSPATR(PC)
+010400050708     A  36                                  ERRMSG('AVISO: DIFERENCIA ENTRE EMI-
+010500050708     A                                      SION Y VIGENCIA SUPERA LAPSO PERMIT-
+010600050708     A                                      IDO.')
+010700050708     A  51                                  ERRMSG('FECHA VIGENCIA DESDE NO VAL-
+010800050708     A                                      IDA.')
+010900050708     A  52                                  ERRMSG('FECHA FUERA DE VIGENCIA DE -
+011000050708     A                                      SUPERPOLIZA.')
+011100050708     A  53                                  ERRMSG('VIGENCIA DESDE DEBE SER MAY-
+011200050708     A                                      OR A INICIO DEL PERIODO EN CURSO')
+011300050708     A  54                                  ERRMSG('VIGENCIA DESDE DEBE SER MEN-
+011400050708     A                                      OR A VIGENCIA HASTA.')
+011500050708     A  55                                  ERRMSG('NO SE PUEDE REFACTURAR ESTA-
+011600050708     A                                       OPERACION.')
+011700050708     A  56                                  ERRMSG('No existe Contrato Reasegur-
+011800050708     A                                      o para esta Fecha Vigencia')
+011900050708     A  71                                  ERRMSG('VIGENCIA DESDE DEBE SER MEN-
+012000050708     A                                      OR A FECHA HASTA FACTURADA.')
+012100050708     A  72                                  ERRMSG('VIG.DESDE Y/O DURACION PERI-
+012200050708     A                                      ODO EN 2DA.RAMA/SEC.DEBE SER IGUAL -
+012300050708     A                                      A LA PRIMERA.')
+012400050708     A                                  8 25'Meses/Años:'
+012500050708     A                                      DSPATR(UL)
+012600050708     A            X1MAR5         1A  O  8 37
+012700050708     A            X1DUP1    R     Y  B  8 39REFFLD(REFER/DUPE *LIBL/REFERENCIA)
+012800050708     A                                      DSPATR(HI)
+012900050708     A                                      EDTCDE(Z)
+013000050708     A                                      DSPATR(PR)
+013100050708     A  65                                  ERRMSG('CANTIDAD DE MESES NO VALIDA-
+013200050708     A                                      .')
+013300050708     A  67                                  ERRMSG('DURACION POLIZA DEBE SER MA-
+013400050708     A                                      YOR A DURACION FACTURACION.')
+013500050708     A                                      COLOR(BLU)
+013600050708     A  14N03N19                            DSPATR(PC)
+013700050708     A                                  8 42'FinVigen:'
+013800050708     A                                      DSPATR(UL)
+013900050708     A            X1HAST         8Y 0B  8 52DSPATR(HI)
+014000050708     A                                      EDTWRD('  /  /    ')
+014100050708     A  03
+014200050708     AO 11                                  DSPATR(PR)
+014300050708     A                                      COLOR(BLU)
+014400050708     A  14N03N11                            DSPATR(PC)
+014500050708     A  60                                  ERRMSG('VIGENCIA HASTA NO VALIDA.')
+014600050708     A  39                                  ERRMSG('FIN DE VIGENCIA NO COINCIDE-
+014700050708     A                                       CON POLIZA GLOBAL.')
+014800050708     A                                  9  1'Anualidad..:'
+014900050708     A                                      DSPATR(UL)
+015000050708     A            X1ANUA         8Y 0O  9 14EDTWRD('  /  /    ')
+015100050708     A                                  9 25'Meses:'
+015200050708     A                                      DSPATR(UL)
+015300050708     A            X1DUP2    R     Y  B  9 32REFFLD(REFER/DUPE *LIBL/REFERENCIA)
+015400050708     A                                      DSPATR(HI)
+015500050708     A                                      EDTCDE(Z)
+015600050708     A  03N22
+015700050708     AO 16
+015800050708     AO 91                                  DSPATR(PR)
+015900050708     A                                      COLOR(BLU)
+016000050708     A  14N03N16                            DSPATR(PC)
+016100050708     A  66                                  ERRMSG('CANTIDAD DE MESES NO VALIDA-
+016200050708     A                                      .')
+016300050708     A  67                                  ERRMSG('DURACION FACTURACION DEBE S-
+016400050708     A                                      ER MENOR A DURACION POLIZA.')
+016500050708     A  37                                  ERRMSG('CANTIDAD MESES=99 NO ES VAL-
+016600050708     A                                      IDO EN AUTOS NI EN VIDA NI CON VIG.-
+016700050708     A                                      ABIERTA.')
+016800050708     A                                  9 35'HastaFac:'
+016900050708     A                                      DSPATR(UL)
+017000050708     A            X1HAFA         8Y 0O  9 45EDTWRD('  /  /    ')
+017100050708     A  38                                  ERRMSG('PERIODO CORTO Y HASTA FACTU-
+017200050708     A                                      RADO NO ES IGUAL A FIN DE VIGENCIA.-
+017300050708     A                                      ')
+017400050708     A                                  9 56'PeCu:'
+017500050708     A                                      DSPATR(UL)
+017600050708     A            X1PECU    R     Y  B  9 62REFFLD(REFER/PECU *LIBL/REFERENCIA)
+017700050708     A                                      DSPATR(HI)
+017800050708     A N17
+017900050708     AO 12                                  DSPATR(PR)
+018000050708     A                                      COLOR(BLU)
+018100050708     A                                      CHECK(RB)
+018200050708     A  77                                  ERRMSG('PERIODO EN CURSO NO PUEDE S-
+018300050708     A                                      ER CERO.')
+018400050708     A  78                                  ERRMSG('AVISO: SE HA CAMBIADO EL PE-
+018500050708     A                                      RIODO EN CURSO.')
+018600050708     A  81                                  ERRMSG('PERIODO EN CURSO EN 2DA.RAM-
+018700050708     A                                      A/SECUENCIA DEBE SER IGUAL A LA PRI-
+018800050708     A                                      MERA.')
+018900050708     A                                 10  1'Plan Comercial:'
+019000050708     A                                      DSPATR(UL)
+019100050708     A            X1PLAC    R     Y  B 10 17REFFLD(REFER/PLAC *LIBL/REFERENCIA)
+019200050708     A                                      DSPATR(HI)
+019300050708     A                                      CHECK(RB)
+019400050708     A                                      COLOR(BLU)
+019500050708     A  70                                  ERRMSG('NO EXISTE PLAN COMERCIAL.')
+019600050708     A  79                                  ERRMSG('AVISO: SE HA CAMBIADO EL PL-
+019700050708     A                                      AN COMERCIAL.')
+019800050708     A  12                                  DSPATR(PR)
+019900050708     A            X1PLAN    R        O 10 21REFFLD(REFER/PLAN *LIBL/REFERENCIA)
+020000050708     A  13 17                          11  1'Código Agenda.:'
+020100050708     A                                      DSPATR(UL)
+020200050708     A  13 17     X1AGEC    R     Y  B 11 17REFFLD(REFER/AGEC *LIBL/REFERENCIA)
+020300050708     A                                      DSPATR(HI)
+020400050708     A                                      COLOR(BLU)
+020500050708     A                                      EDTCDE(Z)
+020600050708     A  83                                  ERRMSG('NO EXISTE CODIGO DE AGENDA.-
+020700050708     A                                      ')
+020800050708     A  82                                  ERRMSG('DEBERIA INFORMASE CODIGO DE-
+020900050708     A                                       AGENDA.')
+021000050708     A  13 17     X1AGED    R        O 11 21REFFLD(REFER/AGED *LIBL/REFERENCIA)
+021100050708     A  18                             12  1'Seguros Colectivos Abiertos:'
+021200050708     A                                      DSPATR(UL)
+021300050708     A  18                             13  1'Poliza Global:'
+021400050708     A                                      DSPATR(UL)
+021500050708     A  18        X1POLI    R     Y  B 13 16REFFLD(REFER/POLI *LIBL/REFERENCIA)
+021600050708     A                                      DSPATR(HI)
+021700050708     A                                      CHECK(RB)
+021800050708     A                                      EDTCDE(Z)
+021900050708     A                                      COLOR(BLU)
+022000050708     A  03                                  DSPATR(PR)
+022100050708     A  73                                  ERRMSG('EL NUMERO DE POLIZA NO CORR-
+022200050708     A                                      ESPONDE A UN COLECTIVO ABIERTO.')
+022300050708     A  74                                  ERRMSG('AVISO: COLECTIVO ABIERTO NO-
+022400050708     A                                       ASIGNADO A NINGUNA POLIZA.')
+022500050708     A  75                                  ERRMSG('AVISO: COLECTIVO ABIERTO Y -
+022600050708     A                                      NO COINCIDE EL VENDEDOR.')
+022700050708     A  76                                  ERRMSG('AVISO: COLECTIVO ABIERTO Y -
+022800050708     A                                      NO COINCIDE EL COBRADOR.')
+022900050708     A  18        X1NOMB    R        O 13 24REFFLD(REFER/NOMB *LIBL/REFERENCIA)
+023000050708     A  18                             14  1'Provincia:'
+023100050708     A                                      DSPATR(UL)
+023200050708     A  18        X1RPRO    R        O 14 12REFFLD(REFER/RPRO *LIBL/REFERENCIA)
+023300050708     A                                      DSPATR(HI)
+023400050708     A                                      EDTCDE(Z)
+023500050708     A  18        X1PROD    R        O 14 15REFFLD(REFER/PROD *LIBL/REFERENCIA)
+023600050708     A            @@CAMP        10A  H
+023700050708     A            @@REGI        10A  H
+023800050708     A            XXIDEN         1S 0H
+023900050708     A*%%GP SCREEN1    01
+024000050708     A*%%WB 9 FIL 17=Ir a...

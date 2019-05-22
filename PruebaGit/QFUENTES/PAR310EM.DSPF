@@ -1,0 +1,214 @@
+000010160607     A*%%TS  SD  20160607  100211  INF1LUIS    REL-V7R1M0  5770-WDS
+000020040623     A*  91/06/11  15:57:57    SAHR        REL-R03M00  5728-PW1
+000030160607     A*%%EC
+000040040623     A*%%FD WEBFACING-ARTICULOS: Detalle 2 Textos
+000050160607     A                                      DSPSIZ(24 80 *DS3)
+000060160607     A                                      REF(*LIBL/REFERENCIA REFER)
+000070160607     A                                      PRINT
+000080160607     A                                      HELP
+000090160607     A  23                                  CF17
+000100001030     A*SLU 09/03/2004 - ¡¡¡OJO!!! Este fuente  fue modificado para dar soporte a
+000110001030     A*funciones WEB, las mismas están marcadas como comantarios y ciertas
+000120001030     A*señales para el CODE Designer con los caracteres "*%%WB"
+000130001030     A*y no deberían eliminarse para no modificar la conversión del Webfacing.
+000140001030     A*Recomenadmos usar CODE Designer para modificar este fuente. Gracias.
+000150150312     A          R PAR31000
+000160150312     A*%%TS  SD  20150312  175504  INF1FER3    REL-V7R1M0  5770-WDS
+000170150312     A                                      KEEP
+000180150312     A                                      ASSUME
+000190150312     A                                  2  2'                  Textos de la Sup-
+000200150312     A                                      erPóliza a nivel de Póliza         -
+000210150312     A                                               '
+000220150312     A                                      DSPATR(UL)
+000230150312     A                                      DSPATR(HI)
+000240001030     A*%%GP SCREEN1    01
+000250040419     A          R PAR31001
+000260040419     A*%%TS  SD  20040419  181733  INF1SERG    REL-V5R1M0  5722-WDS
+000270040419     A                                      KEEP
+000280040419     A                                      OVERLAY
+000290040419     A                                      WINDOW(10 25 5 30)
+000300040419     A                                      WDWBORDER((*DSPATR HI))
+000310040419     A                                  2  3'Código de texto preseteado'
+000320040419     A                                      DSPATR(UL)
+000330040419     A            X1TPCD    R        B  4 13REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+000340040419     A                                      DSPATR(HI)
+000350040419     A                                      COLOR(BLU)
+000360040419     A*%%GP SCREEN2    01
+000370001030     A*  91/06/11  14:27:17    SAHR        REL-R03M00  5728-P
+000380001030     A          R PAR310S1
+000390001030     A*%%TS  SD  20001030  124333  AHR         REL-V4R4M0  5769-PW1
+000400001030     A                                      SFL
+000410001030     A            X1RETX    R   79A  B  8  2
+000420001030     A*%%WB 1 FLD wf_default txtPoli
+000430001030     A                                      REFFLD(REFER/RETX *LIBL/REFERENCIA)
+000440001030     A                                      CHGINPDFT
+000450001030     A                                      CHECK(LC)
+000460001030     A                                      DSPATR(CS)
+000470001030     A                                      COLOR(BLU)
+000480001030     A*%%GP SCREEN1    02
+000490040616     A*  91/06/11  14:27:17    SAHR        REL-R03M00  5728-PW1
+000500060622     A          R PAR310C1                  SFLCTL(PAR310S1)
+000510060622     A*%%TS  SD  20060622  171610  INF1SERG    REL-V5R1M0  5722-WDS
+000520060622     A                                      SFLSIZ(0600)
+000530060622     A                                      SFLPAG(0014)
+000540060622     A                                      CA03
+000550060622     A                                      CA12
+000560060622     A                                      CF07
+000570060622     A                                      CF08
+000580060622     A                                      CF06
+000590060622     A                                      CF09
+000600060622     A                                      CF10
+000610060622     A N48                                  CF11
+000620060622     A                                      CF24
+000630060622     A                                      CF23
+000640060622     A                                      VLDCMDKEY(29)
+000650060622     A                                      KEEP
+000660060622     A                                      OVERLAY
+000670060622     A                                      SFLCSRRRN(&CURSOR)
+000680060622     A                                      SFLMODE(&MODO)
+000690060622     A  30                                  SFLDSP
+000700060622     A  31                                  SFLDSPCTL
+000710060622     A  32                                  SFLCLR
+000720060622     A  30                                  SFLEND(*MORE)
+000730060622     A            MODO           1A  H
+000740060622     A            CURSOR         5S 0H
+000750060622     A                                  3  2'Artículo:'
+000760060622     A                                      DSPATR(UL)
+000770060622     A            XXARCD    R        O  3 12REFFLD(REFER/ARCD *LIBL/REFERENCIA)
+000780060622     A                                      DSPATR(HI)
+000790060622     A                                      EDTCDE(Z)
+000800060622     A                                  3 19'SuperPóliza:'
+000810060622     A                                      DSPATR(UL)
+000820060622     A            XXSPOL    R        O  3 32REFFLD(REFER/SPOL *LIBL/REFERENCIA)
+000830060622     A                                      DSPATR(HI)
+000840060622     A                                      EDTCDE(Z)
+000850060622     A                                  3 42'Suplemento:'
+000860060622     A                                      DSPATR(UL)
+000870060622     A            XXSSPO    R        O  3 54REFFLD(REFER/SSPO *LIBL/REFERENCIA)
+000880060622     A                                      DSPATR(HI)
+000890060622     A                                  4  2'Rama/Sec:'
+000900060622     A                                      DSPATR(UL)
+000910060622     A            XXRAMA    R        O  4 12REFFLD(REFER/RAMA *LIBL/REFERENCIA)
+000920060622     A                                      DSPATR(HI)
+000930060622     A            XXARSE    R        O  4 16REFFLD(REFER/ARSE *LIBL/REFERENCIA)
+000940060622     A                                      DSPATR(HI)
+000950060622     A                                  4 19'Operación..:'
+000960060622     A                                      DSPATR(UL)
+000970060622     A            XXOPER    R        O  4 34REFFLD(REFER/OPER *LIBL/REFERENCIA)
+000980060622     A                                      DSPATR(HI)
+000990060622     A                                      EDTCDE(Z)
+001000060622     A                                  4 42'Suplemento:'
+001010060622     A                                      DSPATR(UL)
+001020060622     A            XXSUOP    R        O  4 54REFFLD(REFER/SUOP *LIBL/REFERENCIA)
+001030060622     A                                      DSPATR(HI)
+001040060622     A                                  5  2'ENTER=Grabar  '
+001050060622     A                                      DSPATR(UL)
+001060060622     A                                  5 17'F12=Retornar     '
+001070060622     A                                      DSPATR(UL)
+001080060622     A                                  5 36'F6=Insertar        '
+001090060622     A                                      DSPATR(UL)
+001100060622     A                                  5 59'F7=Separar        '
+001110060622     A                                      DSPATR(UL)
+001120060622     A                                  6  2'F8=Unir Grupos'
+001130060622     A                                      DSPATR(UL)
+001140060622     A                                  6 17'F9=Suprimir Línea'
+001150060622     A                                      DSPATR(UL)
+001160060622     A                                  6 36'F10=Recuperar Texto'
+001170060622     A                                      DSPATR(UL)
+001180060622     A                                  6 59'F23=Inicializar   '
+001190060622     A                                      DSPATR(UL)
+001200060622     A  90                              7  2'ENTER=Continuar ...'
+001210060622     A                                      DSPATR(HI)
+001220060622     A                                      DSPATR(UL)
+001230060622     A N48                              4 59'F11=Recupera Póliza'
+001240060622     A                                      DSPATR(UL)
+001250040616     A*%%GP SCREEN1    03
+001260040616     A*%%WB 9 REC 24=Ayuda
+001270060622     A            XXMSG         21   O  7 59DSPATR(HI)
+001280040419     A          R PAR31002
+001290040419     A*%%TS  SD  20040419  181733  INF1SERG    REL-V5R1M0  5722-WDS
+001300040419     A                                      KEEP
+001310040419     A                                      OVERLAY
+001320040419     A                                      WINDOW(10 25 6 30)
+001330040419     A                                      WDWBORDER((*DSPATR HI))
+001340040419     A                                  1  6'Textos Codificados'
+001350040419     A                                      DSPATR(UL)
+001360040419     A            X2TPC1    R        B  3  1REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001370040419     A                                      DSPATR(HI)
+001380040419     A                                      COLOR(BLU)
+001390040419     A  51                                  ERRMSG('CODIGO NO VALIDO.')
+001400040419     A            X2TPC2    R        B  3  4REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001410040419     A                                      DSPATR(HI)
+001420040419     A                                      COLOR(BLU)
+001430040419     A  52                                  ERRMSG('CODIGO NO VALIDO.')
+001440040419     A            X2TPC3    R        B  3  7REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001450040419     A                                      DSPATR(HI)
+001460040419     A                                      COLOR(BLU)
+001470040419     A  53                                  ERRMSG('CODIGO NO VALIDO.')
+001480040419     A            X2TPC4    R        B  3 10REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001490040419     A                                      DSPATR(HI)
+001500040419     A                                      COLOR(BLU)
+001510040419     A  54                                  ERRMSG('CODIGO NO VALIDO.')
+001520040419     A            X2TPC5    R        B  3 13REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001530040419     A                                      DSPATR(HI)
+001540040419     A                                      COLOR(BLU)
+001550040419     A  55                                  ERRMSG('CODIGO NO VALIDO.')
+001560040419     A            X2TPC6    R        B  3 16REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001570040419     A                                      DSPATR(HI)
+001580040419     A                                      COLOR(BLU)
+001590040419     A  56                                  ERRMSG('CODIGO NO VALIDO.')
+001600040419     A            X2TPC7    R        B  3 19REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001610040419     A                                      DSPATR(HI)
+001620040419     A                                      COLOR(BLU)
+001630040419     A  57                                  ERRMSG('CODIGO NO VALIDO.')
+001640040419     A            X2TPC8    R        B  3 22REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001650040419     A                                      DSPATR(HI)
+001660040419     A                                      COLOR(BLU)
+001670040419     A  58                                  ERRMSG('CODIGO NO VALIDO.')
+001680040419     A            X2TPC9    R        B  3 25REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001690040419     A                                      DSPATR(HI)
+001700040419     A                                      COLOR(BLU)
+001710040419     A  59                                  ERRMSG('CODIGO NO VALIDO.')
+001720040419     A            X2TPC0    R        B  3 28REFFLD(REFER/TPCD *LIBL/REFERENCIA)
+001730040419     A                                      DSPATR(HI)
+001740040419     A                                      COLOR(BLU)
+001750040419     A  60                                  ERRMSG('CODIGO NO VALIDO.')
+001760040419     A  91                              5  1'Intro=Concretar...'
+001770040419     A                                      DSPATR(UL)
+001780040419     A                                      DSPATR(HI)
+001790040419     A*%%GP SCREEN3    01
+001800160606     A          R PAR31003
+001810160606     A*%%TS  SD  20160606  174433  INF1LUIS    REL-V7R1M0  5770-WDS
+001820160606     A                                      WINDOW(10 25 6 40)
+001830160606     A                                      CA12
+001840160606     A                                      KEEP
+001850160606     A                                      OVERLAY
+001860160606     A                                      WDWBORDER((*DSPATR HI))
+001870160606     A                                  1 17'F12=Salir'
+001880160606     A                                      DSPATR(HI)
+001890160606     A                                  2  3'Póliza ...........:'
+001900160606     A                                      DSPATR(UL)
+001910160606     A            X1POLI    R        B  2 23REFFLD(REFER/POLI *LIBL/REFERENCIA)
+001920160606     A                                      DSPATR(HI)
+001930160606     A                                      COLOR(BLU)
+001940160606     A  63
+001950160606     AO 64                                  ERRMSG('Póliza o Supl.Inexistente')
+001960160606     A                                  3  3'Marca Supl........:'
+001970160606     A                                      DSPATR(UL)
+001980160606     A            X1MARC         1A  B  3 23DSPATR(HI)
+001990160606     A                                      VALUES('N' 'S')
+002000160606     A                                  3 25'(S=SI/N=NO)'
+002010160606     A                                  4  3'Suplemento........:'
+002020160606     A                                      DSPATR(UL)
+002030160606     A            X1SUOP    R        B  4 23REFFLD(REFER/SUOP *LIBL/REFERENCIA)
+002040160606     A                                      DSPATR(HI)
+002050160606     A                                      COLOR(BLU)
+002060040622     A*%%GP SCREEN4    01
+002070040622     A*%%WB 9 FIL 17=Ir a...
+002080160606     A                                  5  3'Copiar Ubicaciones:'
+002090160606     A                                      DSPATR(UL)
+002100160606     A            X1CPUB    R        B  5 23REFFLD(REFER/MARP *LIBL/REFERENCIA)
+002110160606     A                                      TEXT('Copia Ubicaciones Si o No')
+002120160606     A                                      DSPATR(HI)
+002130160606     A                                      VALUES('S' 'N')
+002140160606     A                                  5 25'(S=SI/N=NO)'
